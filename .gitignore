@@ -3,3 +3,14 @@ Portolio/master.pdf
 Report/master.pdf
 *.aux
 *.eps~
+Report/master-blx.bib
+Report/master.bbl
+Report/master.blg
+Report/master.log
+Report/master.out
+Report/master.run.xml
+Report/master.synctex.gz
+Report/master.tdo
+Report/master.thm
+Report/master.toc
+Report/sections/introduction.log
