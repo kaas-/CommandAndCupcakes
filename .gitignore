@@ -3,3 +3,10 @@ Portolio/master.pdf
 Report/master.pdf
 *.aux
 *.eps~
+*.toc
+*.blg
+*.out
+*.xml
+*.gz
+*.tdo
+*.thm
