@@ -16,55 +16,136 @@
   {}
 \endgroup
 
-\entry{Madsen2010}{booklet}{}
-  \name{author}{1}{}{%
+\entry{Lang2009}{misc}{}
+  \name{author}{2}{}{%
     {{}%
-     {Madsen}{M.}%
-     {Lars}{L.}%
+     {Annie~Lang}{A.~L.}%
+     {Byungho Park Mija~Shin}{B.~P. M.~S.}%
+     {}{}%
+     {Samuel D.~Bradley}{S.~D.~B.}}%
+    {{}%
+     {Chung}{C.}%
+     {Yongkuk}{Y.}%
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{ML1}
-  \strng{fullhash}{ML1}
-  \field{sortinit}{M}
-  \field{howpublished}{\url{http://www.imf.au.dk/system/latex/bog/}}
-  \field{title}{Introduktion til {LaTeX}}
+  \strng{namehash}{ALSDBBPMSCY1}
+  \strng{fullhash}{ALSDBBPMSCY1}
+  \field{sortinit}{A}
+  \field{title}{Parsing the Resource Pie: Using STRTs to Measure Attention to
+  Mediated Messages}
+  \field{year}{2009}
+\endentry
+
+\entry{Charlton2010}{misc}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Charlton}{C.}%
+     {John~P.}{J.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Danforth}{D.}%
+     {Ian~D.W.}{I.~D.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{CJPDID1}
+  \strng{fullhash}{CJPDID1}
+  \field{sortinit}{C}
+  \field{title}{Validating the distinction between computer addiction and
+  engagement: online game playing and personality}
   \field{year}{2010}
 \endentry
 
-\entry{Mittelbach2005}{book}{}
+\entry{Hamari2014}{misc}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Hamari}{H.}%
+     {Juho}{J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Koivisto}{K.}%
+     {Jonna}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{HJKJ1}
+  \strng{fullhash}{HJKJ1}
+  \field{sortinit}{H}
+  \field{title}{Mesuring flow in gamifcation: Dispositional Flow Scale-2}
+  \field{year}{2014}
+\endentry
+
+\entry{Mancas2016}{book}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Matei~Mancas}{M.~M.}%
+     {Nicholas~Riche}{N.~R.}%
+     {}{}%
+     {Vincent P.~Ferrera}{V.~P.~F.}}%
+    {{}%
+     {Taylor}{T.}%
+     {John~G.}{J.~G.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MMVPFNRTJG1}
+  \strng{fullhash}{MMVPFNRTJG1}
+  \field{sortinit}{M}
+  \field{title}{From Human Attention to Computational Attention: A
+  multidiciplinary Approach}
+  \field{year}{2016}
+\endentry
+
+\entry{TobiiPro}{misc}{}
   \name{author}{1}{}{%
     {{}%
-     {Mittelbach}{M.}%
-     {Frank}{F.}%
+     {Pro}{P.}%
+     {Tobii}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PT1}
+  \strng{fullhash}{PT1}
+  \field{sortinit}{P}
+  \field{howpublished}{\url{http://www.tobiipro.com/learn-and-support/learn/eye-tracking-essentials/how-do-tobii-eye-trackers-work/}}
+  \field{note}{accessed on 07-10-2016}
+  \field{title}{How do Tobii eye trackers work?}
+\endentry
+
+\entry{snowden2012basic}{book}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Snowden}{S.}%
+     {Robert}{R.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Snowden}{S.}%
+     {Robert~J}{R.~J.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Thompson}{T.}%
+     {Peter}{P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Troscianko}{T.}%
+     {Tom}{T.}%
      {}{}%
      {}{}}%
   }
   \list{publisher}{1}{%
-    {Addison-Wesley}%
+    {Oxford University Press}%
   }
-  \strng{namehash}{MF1}
-  \strng{fullhash}{MF1}
-  \field{sortinit}{M}
-  \field{edition}{2. ed.}
-  \field{title}{The LATEX companion}
-  \field{year}{2005}
-\endentry
-
-\entry{Oetiker2010}{misc}{}
-  \name{author}{1}{}{%
-    {{}%
-     {Oetiker}{O.}%
-     {Tobias}{T.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{OT1}
-  \strng{fullhash}{OT1}
-  \field{sortinit}{O}
-  \field{howpublished}{\url{http://tobi.oetiker.ch/lshort/lshort.pdf}}
-  \field{title}{The Not So Short A Introduction to {LaTeX2e}}
-  \field{year}{2010}
+  \strng{namehash}{SR+1}
+  \strng{fullhash}{SRSRJTPTT1}
+  \field{sortinit}{S}
+  \field{title}{Basic vision: an introduction to visual perception}
+  \field{year}{2012}
 \endentry
 
 \lossort
