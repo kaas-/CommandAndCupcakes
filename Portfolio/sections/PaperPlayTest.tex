@@ -1,0 +1,68 @@
+\chapter{Internal Paper Play test}\label{ch:paperPlaytest}
+\section{The Prototype}
+\begin{figure}[h] 
+\centering 
+\includegraphics[width=0.5\textwidth]{figures/PPtestArena}
+\caption{The prototype's arena} \label{fig:PPtest1}
+\end{figure}
+The board consists of a 5x5 grid, as can be seen on figure \ref{fig:PPtest1}. Some tiles have an object inside, which can be interacted with. Nine of the objects contain a map piece that is received when the player interacts with the object. The objects are represented by white pieces of paper with skulls, trees and other drawings on them. The Player Characters are represented by pieces of paper with a coloured outline in red, blue, green and yellow colours.
+
+The objective of the game is to find pieces of a treasure map that are hidden in the objects on the map. When you have all the map pieces the location of the treasure is revealed. When a player digs up the treasure that player wins.
+
+
+There is a small x on the back of nine of the objects. This is to indicate if there is a map piece hidden in that object.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/PPtestControls}  
+\caption{The prototype's player controls}\label{fig:PPtest2}
+\end{figure}
+
+\begin{wrapfigure}{r}{0.4\textwidth}
+\begin{center}
+\includegraphics[width=0.4\textwidth]{figures/PPtestMap} 
+\end{center}
+\caption{The prototype's treasure map}\label{fig:PPtest3}
+\end{wrapfigure}
+
+Each player had a mock controller which was divided into two parts, see figure \ref{fig:PPtest2}. The left side displays collectable map pieces that the player posses. The right part is the action menu, which have buttons for all the controls. When pressing a button, its icon will display in one of the two empty circles in the top, starting from the leftmost one. Each button represent an action that you can take on your turn. The actions in the top row from left to right are Search, Attack, and Dig. Dig is special because it is two icons bound together, because it takes the whole turn to do this action.
+
+When both actions have been selected, pressing the checkmark button will confirm your selection and execute your turn.
+
+The left part of the screen is for containing the treasure map pieces that the player collects. When collecting one of the nine map pieces hidden on the board, the piece will appear in the correct position and orientation on the grid.When having enough map pieces, the player will be able to identify where the treasure is. The treasure map is divided as seen in figure \ref{fig:PPtest3}.
+
+The small cross above the map pieces is used when a player has collected all the map pieces. Then the cross will appear on the map to show the player where the treasure is hidden.
+
+\section{The Play Test}
+We played the game through a few rounds with 4 players. Each player got a turn each round, with the turn order randomly determined at the start of each round.  After a few rounds we had identified the following issues with the prototype:
+
+\subsubsection{Combat}
+In the prototype, the act of attacking is done by using one action to move into the square of an opponent, and then use the other action to use the attack action. This caused the defender to lose all their map pieces to the attacker and become Stunned, which means losing access to one of their actions in their following turn. This was problematic as this could lead to endless cycles of attacking between two players, and also have no consequence for the attacker.
+
+To replace this, we came up with a different combat system. We removed the attack action and combat is now automatically initiated when the player whose turn it is enters the square of an opponent. Additionally, instead of the attacker winning automatically, we inserted a mini-game where both attacker and defender play in order to determine who won the engagement. Multiple numbered dots appear on both players’ smartphone, and the objective is to press all the dots in correct sequence before your opponent. The one with the fastest time wins, and the loser becomes Stunned. Additionally, the loser moves 2 spaces away from the winning player in a predetermined direction. If the attacker wins, they steal all the defender’s map pieces. If the defender wins, they keep their own map pieces, but do not steal pieces from the attacker.
+
+This system can result in ties, in case both players complete at the exact same time. How likely this is can be manipulated by how precise time is recorded in the mini-game, with more precise timekeeping should result in fewer cases of ties. However, even with a low probability this situation can still occur. Therefore, in case of a tie, both players keep their map pieces, but both do also become Stunned and is moved away from each other.
+
+\subsubsection{Turn Order}
+By having the turn order randomly determined at the start of each round, this could result in a player getting the last turn in a round, and then having the first turn in the following turn. This effectively made the player have two turns in a row, which seemed unfair.
+
+
+To prevent this we came up with two solutions:
+\begin{itemize}
+\item Make the turn order the same across rounds, starting with player 1, then player 2 and so on.
+\item Adding logic into the turn order which made sure that a player could not be first player if they had the last turn in the previous round.
+\end{itemize}
+
+A decision on this issue has not been reached on the basis if this test.
+
+\subsubsection{Controller}
+Having both the controls and the collected map pieces on the same screen resulted in having a limited space for both. To solve this, a new control layout was sketched out.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/RevisedControl} 
+\caption{The new controls based on the paper play test}\label{fig:PPtest4}
+\end{figure}
+
+Now the controller would initially display only the controls used to plan your turn, such as move and interact, as can be seen on figure \ref{fig:PPtest4}. However, an area on the smartphone would indicate how many map pieces you had collected. This area would also have a button that could be pressed to overlay the map on top of the controls, so the player could inspect what their map pieces showed. The same button could then be pressed to close the map overlay, and again show the controls. Additionally, when a player has their map open and it becomes their turn. The map could automatically close as a signal that it is their turn.
+
