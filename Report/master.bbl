@@ -78,6 +78,40 @@
   \field{year}{2014}
 \endentry
 
+\entry{lee2011efficient}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Lee}{L.}%
+     {Jong-Seok}{J.-S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {De~Simone}{D.~S.}%
+     {Francesca}{F.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ebrahimi}{E.}%
+     {Touradj}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Elsevier}%
+  }
+  \strng{namehash}{LJSDSFET1}
+  \strng{fullhash}{LJSDSFET1}
+  \field{sortinit}{L}
+  \field{number}{8}
+  \field{pages}{704\bibrangedash 711}
+  \field{title}{Efficient video coding based on audio-visual focus of
+  attention}
+  \field{volume}{22}
+  \field{journaltitle}{Journal of Visual Communication and Image
+  Representation}
+  \field{year}{2011}
+\endentry
+
 \entry{Mancas2016}{book}{}
   \name{author}{2}{}{%
     {{}%
@@ -97,6 +131,72 @@
   \field{title}{From Human Attention to Computational Attention: A
   multidiciplinary Approach}
   \field{year}{2016}
+\endentry
+
+\entry{melloni2012interaction}{article}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Melloni}{M.}%
+     {Lucia}{L.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Leeuwen}{L.}%
+     {Sara}{S.}%
+     {van}{v.}%
+     {}{}}%
+    {{}%
+     {Alink}{A.}%
+     {Arjen}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {M{\"u}ller}{M.}%
+     {Notger~G}{N.~G.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Oxford Univ Press}%
+  }
+  \strng{namehash}{ML+1}
+  \strng{fullhash}{MLLSvAAMNG1}
+  \field{sortinit}{M}
+  \field{number}{12}
+  \field{pages}{2943\bibrangedash 2952}
+  \field{title}{Interaction between bottom-up saliency and top-down control:
+  how saliency maps are created in the human brain}
+  \field{volume}{22}
+  \field{journaltitle}{Cerebral cortex}
+  \field{year}{2012}
+\endentry
+
+\entry{osberger1998automatic}{inproceedings}{}
+  \name{author}{2}{}{%
+    {{}%
+     {Osberger}{O.}%
+     {Wilfried}{W.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Maeder}{M.}%
+     {Anthony~J}{A.~J.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{OWMAJ1}
+  \strng{fullhash}{OWMAJ1}
+  \field{sortinit}{O}
+  \field{booktitle}{Pattern Recognition, 1998. Proceedings. Fourteenth
+  International Conference on}
+  \field{pages}{701\bibrangedash 704}
+  \field{title}{Automatic identification of perceptually important regions in
+  an image}
+  \field{volume}{1}
+  \field{year}{1998}
 \endentry
 
 \entry{TobiiPro}{misc}{}
@@ -146,6 +246,64 @@
   \field{sortinit}{S}
   \field{title}{Basic vision: an introduction to visual perception}
   \field{year}{2012}
+\endentry
+
+\entry{sundstedt2012gazing}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Sundstedt}{S.}%
+     {Veronica}{V.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Morgan \& Claypool Publishers}%
+  }
+  \strng{namehash}{SV1}
+  \strng{fullhash}{SV1}
+  \field{sortinit}{S}
+  \field{number}{1}
+  \field{pages}{1\bibrangedash 113}
+  \field{title}{Gazing at games: An introduction to eye tracking control}
+  \field{volume}{5}
+  \field{journaltitle}{Synthesis Lectures on Computer Graphics and Animation}
+  \field{year}{2012}
+\endentry
+
+\entry{zhai2008scalable}{inproceedings}{}
+  \name{author}{4}{}{%
+    {{}%
+     {Zhai}{Z.}%
+     {Guangtao}{G.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chen}{C.}%
+     {Qian}{Q.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Yang}{Y.}%
+     {Xiaokang}{X.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Zhang}{Z.}%
+     {Wenjun}{W.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {IEEE}%
+  }
+  \strng{namehash}{ZG+1}
+  \strng{fullhash}{ZGCQYXZW1}
+  \field{sortinit}{Z}
+  \field{booktitle}{2008 IEEE International Conference on Acoustics, Speech and
+  Signal Processing}
+  \field{pages}{873\bibrangedash 876}
+  \field{title}{Scalable visual sensitivity profile estimation}
+  \field{year}{2008}
 \endentry
 
 \lossort
