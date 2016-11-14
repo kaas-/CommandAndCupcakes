@@ -270,6 +270,25 @@
   \field{year}{2012}
 \endentry
 
+\entry{Yarbus1967}{book}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Yarbus}{Y.}%
+     {Alfred~L.}{A.~L.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{organization}{1}{%
+    {Institute for Problems of Information Transmission, Academy of Sciences of
+  the USSR, Moscow}%
+  }
+  \strng{namehash}{YAL1}
+  \strng{fullhash}{YAL1}
+  \field{sortinit}{Y}
+  \field{title}{Eye Movements and Vision}
+  \field{year}{1967}
+\endentry
+
 \entry{zhai2008scalable}{inproceedings}{}
   \name{author}{4}{}{%
     {{}%
