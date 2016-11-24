@@ -1,5 +1,59 @@
-\chapter{Internal Paper Play test}\label{ch:paperPlaytest}
-\section{The Prototype}
+\chapter{Paper prototype tests}\label{ch:paperPlaytest}
+Before the game was built, several paper prototype tests were conducted. The first paper test is an external test using ten volunteering participants, and the second is an internal paper prototype test which seeks to test whether the planned game mechanics work in practice.
+
+\section{External grid and interaction test}
+In order to test how to best place interactive objects on the grid on which characters move, as well as whether users prefer to tap actions on their smartphone screen or drag them to a designated place, a low-fidelity test was conducted using paper artefacts. Ten test users have participated in this test, which consists of two parts: one which seeks to investigate the best way to represent an interactive object on a grid, and one which seeks to investigate whether users prefer to tap or drag actions on the smartphone. For both parts of this test, three people were present: a test participant; a test conductor, who explains the test procedure to the participant, shows them the relevant paper prototypes and asks the questions; and a note taker, who is responsible for data collection. This test setup can be seen in figure \ref{fig:papersetup}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth / 2]{figures/PaperTestSetup.png}
+	\caption{Setup for the paper test. Not pictured is the note taker. \label{fig:papersetup}}
+\end{figure}
+
+\subsection{Testing object placement on a grid}
+For the first part of the test, twelve images are produced, depicting six different ways to represent a character and an interactive object on a grid. For each of these six methods, two versions are used: one in which the character is placed on the same space as the object (and can thus interact with it), and one in which they are on a different space. The participants are asked the same two questions for each of these twelve images:
+
+\begin{enumerate}
+    \item From where the character is currently standing, can they interact with the object?
+    \item If the character is on the same space as the object, can they move away from it --- or, if they are in a space adjacent to the object, can they move onto it?
+\end{enumerate}
+
+The images are numbered from 1 to 12, and depict different ways to represent and object and a character on a grid. The even numbers all depict a character which is on a different space than the object, and the uneven numbers all depict a character which is not. These images can all be seen in figure \ref{fig:papergrid}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/paper_0.png}
+	\caption{The twelve images which are presented to the test participants. \label{fig:papergrid}}
+\end{figure}
+
+Image 1-4 all depict a character and an object which are both placed on the squares of a grid rather than the vertices. In image 1 and 2, the object is centered on its square and takes up a majority of its space, whereas the object is diminished in size and pushed aside in image 3 and 4. In image 5-8, both the character and the object are on the vertices rather than the square, the difference being that the object is centered on the intersection between the vertices in image 5 and 6, and pushed aside in image 7 and 8 so that the intersection is visible. Images 9 and 10 depict a character which is on the vertices and an object which is on the squares, and images 11 and 12 depict a character which is on the squares and an object which is on the vertices. In the last four versions, the object is interactive when the character is placed on any of the four adjacent spaces, whereas the other eight versions only provide one available interaction space for an object.
+
+\subsection{Testing whether users prefer to tap or drag objects}
+The second part of the test investigates how users interact with the interface. Test users are presented with a paper mock-up of the interface, seen in figure \ref{fig:mockup}. They are then given four tasks, and whether the user taps the available actions or drags them to one of the two circles is noted down.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=0.7]{figures/paper_1.jpg}
+	\caption{Paper mock-up representing a computer screen (above) and a smartphone screen (below). Note that the elements with a thick border are movable. \label{fig:mockup}}
+\end{figure}
+
+\subsection{Results}
+After the data was collected for the first portion of the test, it was counted for each of the twelve images how many times a participant failed to see that they could interact with the object, and how many times they failed to see that they can move. This gave a clear indication of which of the different proposals for object and character placement were intuitive to the majority of the participants.
+
+The test revealed that most of the participants made wrong assumptions about how the character should move and interact with the objects when shown images 1, 2, 5 and 6. In images 5 and 6, an object intersects with the walking path of the character, which may be the reason why participants judged that they cannot move past the object. In images 1 and 2, the object occupies the majority of its tile, which serves as another source of confusion, since many players judged that they cannot move onto it, and that they can interact with it while on an adjacent tile. All of the aforementioned issues occurred when a participant was shown the first image in a sequence (images 1 and 5), when the character was not yet on the same tile as the object. Those issues were resolved when the second image (number 2 and 6) were shown. However, this indicates that if users are introduced to a game with a design corresponding to the ones shown in images 1, 2, 5 and 6, they may have wrong ideas on how to move within the game field and interact with the objects, which may result in them not being aware of all their opportunities.
+
+When shown images 3 and 4, where the object is pushed aside on the square, the participants understood how to move within a plane and how to interact with an object, with only a few exceptions. The results were similar when shown images 7 and 8. However, in this case, once the character was on the right spot, a few users did not know that they could interact with the object or that they could move past it. 
+
+In images 9, 10, 11 and 12, when a character was on one of the vertices and the object was on a square, or the other way around, some participants were unclear if they could interact with the object. Specifically in images 10 and 12, some users thought they were in a wrong spot to do so, when in fact the opposite was the case. There was, however, no confusion as to where the character could move.
+
+The results of the second part of the test have shown that the majority of the participants (7 out of 10) preferred tapping an icon when given a specific task, rather than dragging it. However, those results may, in part, be influenced by the paper setup, since in this case it may be easier to tap and object of interest, compared to dragging it, which may not be the case when transferred to a smartphone. 
+
+It was also clear that the participants understood what the different icons on the mobile screen setup meant when asked to accomplish a task in the game. All of the participants also understood that digging took two actions, since the two shovel icons were merged together. 
+
+\section{Internal paper prototype test}
+A second prototype test is conducted amongst group members to test whether the intended game mechanics work in practice.
+
+\subsection{The Prototype}
 \begin{figure}[h] 
 \centering 
 \includegraphics[width=0.5\textwidth]{figures/PPtestArena}
@@ -33,7 +87,7 @@ The left part of the screen is for containing the treasure map pieces that the p
 
 The small cross above the map pieces is used when a player has collected all the map pieces. Then the cross will appear on the map to show the player where the treasure is hidden.
 
-\section{The Play Test}
+\subsection{The Play Test}
 We played the game through a few rounds with 4 players. Each player got a turn each round, with the turn order randomly determined at the start of each round.  After a few rounds we had identified the following issues with the prototype:
 
 \subsubsection{Combat}
@@ -65,4 +119,5 @@ Having both the controls and the collected map pieces on the same screen resulte
 \end{figure}
 
 Now the controller would initially display only the controls used to plan your turn, such as move and interact, as can be seen on figure \ref{fig:PPtest4}. However, an area on the smartphone would indicate how many map pieces you had collected. This area would also have a button that could be pressed to overlay the map on top of the controls, so the player could inspect what their map pieces showed. The same button could then be pressed to close the map overlay, and again show the controls. Additionally, when a player has their map open and it becomes their turn. The map could automatically close as a signal that it is their turn.
+
 
