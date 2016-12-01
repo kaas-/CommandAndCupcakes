@@ -78,6 +78,32 @@
   \field{year}{2014}
 \endentry
 
+\entry{Land1999}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Land}{L.}%
+     {Michael}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Mennie}{M.}%
+     {Neil}{N.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Rusted}{R.}%
+     {Jennifer}{J.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LMMNRJ1}
+  \strng{fullhash}{LMMNRJ1}
+  \field{sortinit}{L}
+  \field{title}{The Roles of Vision and Eye Movements in the Control of
+  Activities of Daily Living}
+  \field{year}{1999}
+\endentry
+
 \entry{lee2011efficient}{article}{}
   \name{author}{3}{}{%
     {{}%
@@ -107,6 +133,34 @@
   \field{title}{Efficient video coding based on audio-visual focus of
   attention}
   \field{volume}{22}
+  \field{journaltitle}{Journal of Visual Communication and Image
+  Representation}
+  \field{year}{2011}
+\endentry
+
+\entry{Lee2011704}{article}{}
+  \name{author}{3}{}{%
+    {{}%
+     {Lee}{L.}%
+     {Jong-Seok}{J.-S.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Simone}{S.}%
+     {Francesca~De}{F.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Ebrahimi}{E.}%
+     {Touradj}{T.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{LJSSFDET1}
+  \strng{fullhash}{LJSSFDET1}
+  \field{sortinit}{L}
+  \field{title}{Efficient video coding based on audio-visual focus of
+  attention}
   \field{journaltitle}{Journal of Visual Communication and Image
   Representation}
   \field{year}{2011}
