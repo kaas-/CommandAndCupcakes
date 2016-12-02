@@ -1,0 +1,49 @@
+\chapter{Treasure Hunt: a Dual-Screen Testing Tool}\label{ch:game}
+\todo{It's just a working title, do not panic} As the focus of this paper lies on directing attention between two screens, a game has been developed for purpose of testing the problem formulation. The game is an AirConsole game, which means that players will need to direct their attention at the main screen in certain situations, and at their phone screen in others. Therefore, the game serves as a tool to test the best way to direct a player's attention towards a certain screen.
+
+The game is a turn-based treasure hunting game for four players. Each player controls a pirate character which they use to walk around on a treasure island, to look for map pieces or steal them from the other players. When a player has found all nine map pieces, they win the game.
+
+It was decided to create a multiplayer game because AirConsole lends itself to this type of game, as players can easily use their own phone as an individual controller. The game is designed in a way so that players will have too look at the main screen in certain situations, and on their phone screen in others. This decision was made so that the game works as a testing tool to investigate how to direct players' attention between two screens. Furthermore, the game is turn-based, rather than real-time, as the AirConsole format has an inherent latency issue. Making the game turn-based reduces the consequences of a delay between player input and game reaction time. 
+
+\section{Gameplay}
+Each player has a turn in a random order --- once all players have had their turn, this order is scrambled. On a player's turn, they must plan two actions, which will be executed. They have [a few]\todo{remember to correct this. do we still have this timer? What happens if the timer runs out?} seconds to do this. The possible actions are the following: Move in a direction, interact and dig. The actions are planned by clicking on the corresponding button in the order you would like them to execute in. There is a movement option for each of the four directions. The interact action makes the players pirate interact with an object on the tile it is on. This is one way to find map pieces. If a player actively moves onto a tile another player already occupies then the defender will rotate to face the attacker and an attack will be initiated. A minigame will start on the two players smartphone. The winner stays on the tile and the loser gets pushed back two tiles in a valid direction. A valid direction is two available tiles in the facing direction of the winning player. This means that the players cannot go over the edge of the map. If this direction is not available the first available direction turning clockwise is chosen. If another player is in this tile an attack is not triggered since this is not an active action. The loser also loses their first action in their next turn on account of them being “stunned”. If another player occupies this tile no attack will be initiated since the move was not active. The winner also copy one of the loser’s map pieces. The dig action is a bit different since this takes two actions and until it is the player’s turn again to complete. This gives the other players an opportunity to disrupt the dig by attacking the player successfully. When the dig is finished, and if it was in the correct space the digging player wins the game. 
+
+The random turn-order was decided upon based on the problem statement regarding directing attention. This would be a way to test different ways to direct the players attention without them growing accustomed to the turn-order. The time limit is to increase the pace of the game. 
+
+The way the movement and actions work was decided due to the platform having issues with latency on some networks and also the lack of the tactile feedback buttons on a screen provide. This means that moving in a real-time system is less accurate, so a turn-based structure is used instead.
+
+The attack action works like described based again on testing the problem statement. The way it works forces the players to redirect attention when it is not necessarily their turn. The minigame was implemented so as not to make the winning side be the one who initiated the attack or chosen at random. Besides being pushed back the losers also gets one less action in their next turn. This works as a consequence for not winning combat, and the stunning is so the loser cannot attack back on their following turn. 
+
+The digging action is a long action and the reason for this is for the other players to have a chance at disrupting the digger, to give a bit of drama and also to keep the other players attention on the whole game and not just their own character. 
+
+\section{Interfaces}
+The game has two different type of screens. A shared main screen and a personal smartphone screen for each player. This is a feature of the AirConsole platform.
+
+On the main screen is the game arena which is a tropical island. This island has a visible grid pattern on it to indicate to the players where they can walk and where the boundaries of the arena are. Interactable objects such as palm trees, ferns and skulls are placed inside of the corners of these grids and they can be interacted with if a player character is on the same grid space. The island is square and it is viewed from an isometric perspective. 
+
+Additionally there is also a scoreboard on the main screen displaying the number of map pieces each player has.
+
+The grid based arena was chosen to make it easier for the player to navigate the map. The placement of the objects are also placed where the players find it most intuitive to be able to interact with them when on the same tile, according to the paper test. 
+
+The island’s shape is to fit the cartoon-ish style and the grid pattern. The scoreboard it there for strategic purposes, so that the players can keep track on how far the other player are, and how close they are to being able to find the treasure. 
+
+\begin{figure}
+	\centering
+	\missingfigure{Main screen goes here}
+	\caption{The main screen}\label{fig:main_screen}
+\end{figure}
+
+The smartphone screens displays the colour of the player, six buttons you can tab during your turn to plan the turn. 
+
+\begin{figure}
+	\centering
+	\missingfigure{Phone screen goes here}
+	\caption{The phone screen}\label{fig:phone_screen}
+\end{figure}
+
+As can be seen on Figure \ref{fig:phone_screen}, the buttons are arranged in a two-by-three pattern with the movement buttons slightly closer than the other two buttons. Two empty spaces at the top is where the planned actions are shown. The button with a checkmark is at the upper right corner and is the button that needs to be tapped to implement the actions the player planned. The last thing on the smartphone screen is a button with a little grid-map on it and a number underneath it. The left number is the number of map pieces the player is in possession of and the right number is the number of pieces needed. If the button with the grid-map is tapped the treasure map will appear on the smartphone screen. Another tap and it is gone. 
+
+When designing the smartphone interface it was incredibly important that it did not become overcrowded with buttons and other features. Initially the treasure map was shown next to the controls, but this was revised since if a player is using a small smartphone, then they will have a lot of trouble being able to tap the correct actions etc. Therefore it was decided that the map was to be a pop-up that only shows if the player taps on the map button.
+
+\section{Attention-Directing Cues}
+Four versions are made of this game.

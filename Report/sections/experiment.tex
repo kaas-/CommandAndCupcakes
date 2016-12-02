@@ -1,50 +1,78 @@
-\chapter{The Experiment}\label{ch:experiment}
-\section{The Game Description}
-The game is a treasure hunting game for multiple players. Each player controls a pirate character which they use to walk around on the treasure island, to look for map pieces or to steal them from the other players. When a player has found enough map pieces to be able to deduce where the treasure is hidden they can then walk over to that spot and dig up the treasure. They have to be smart about it since the other players can attack them while they are digging. The first player to reach the treasure wins. 
+\chapter{The experiment}\label{ch:experiment}
+The game described in Chapter \ref{ch:game} serves as a tool to test the problem formulation:
 
+\begin{changemargin}{1cm}{1cm}
+\textbf{How can the player’s attention be directed between a shared screen and a personal hand-held screen when there is a need to change their visual focus between the two in a local multiplayer game?}
+\end{changemargin}
 
-It was decided beforehand that it was to be a multi-player game because of the platform AirConsole, which mainly deals in multiplayer games. After looking through which games already existed on their platform it was decided to make it a treasure hunting game since there at the time was none on the platform. 
+Since the focus of this problem formulation is on directing attention between two screens in a setup such as that of the AirConsole, the experiment described in this chapter sought to discover which method is best fit for directing the players' attention. To do this, test participants were subjected to the four different iterations of the game, which, as mentioned in Chapter \ref{ch:game}, utilise four different methods of directing attention. The effect on the player's attention were measured through a combination of self-report questions and gaze tracking. This chapter describes the experiment in further detail.
 
+\section{Metrics}
+In order to test the problem formulation, a combination of several metrics were measured. These metrics may be split into two categories: performance and user experience metrics.
 
+\subsection{User experience metrics}
+After playing an iteration of the game, test participants were asked to fill out a questionnaire. The answers from this questionnaire serve as user experience metrics. As this is self-reported data from the participants, it is fit for measuring the users' own perception, but less so for measuring their tangible performance. However, as the users' own experience is still relevant to the problem formulation, this experiment made use of self-report questionnaires. The questions in the questionnaire were as follows:
 
-\subsection{Gameplay}
-Each player have a turn in a randomised order, where they each can plan two actions for that turn. They have [a few] seconds to do this. The actions are the following: Move in a direction, interact and dig. The actions are planned by clicking on the corresponding button in the order you would like them to execute in. There is a movement option for each of the four directions. The interact action makes the players pirate interact with an object on the tile it is on. This is one way to find map pieces. If a player actively moves onto a tile another player already occupies then the defender will rotate to face the attacker and an attack will be initiated. A minigame will start on the two players smartphone. The winner stays on the tile and the loser gets pushed back two tiles in a valid direction. A valid direction is two available tiles in the facing direction of the winning player. This means that the players cannot go over the edge of the map. If this direction is not available the first available direction turning clockwise is chosen. If another player is in this tile an attack is not triggered since this is not an active action. The loser also loses their first action in their next turn on account of them being “stunned”. If another player occupies this tile no attack will be initiated since the move was not active. The winner also copy one of the loser’s map pieces. The dig action is a bit different since this takes two actions and until it is the player’s turn again to complete. This gives the other players an opportunity to disrupt the dig by attacking the player successfully. When the dig is finished, and if it was in the correct space the digging player wins the game. 
+\begin{enumerate}
+	\item To which degree do you agree with the following statements?
+	\begin{enumerate}
+		\item It was clear when it was my turn to act
+		\item It was clear when I was in combat
+		\item It was clear when I was supposed to look at the phone screen
+		\item It was clear when I should look at the main screen
+		\item It was easy for me to switch my attention between the two screens
+		\item It was easy to find what I was looking for when switching my gaze between the screens
+		\item I was distracted by the other players' phones
+	\end{enumerate}
+	\item What did you think of the dual-screen setup? What did you enjoy about it? What did you find confusing?
+	\item Do you have any additional notes?
+\end{enumerate}
 
+The rating scale statements (that is, the statements presented under question 1) provide seven possible answers: Strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, and strongly agree. The inclusion of the \textit{neutral} option allows participants who neither agree nor disagree with a statement to pick a fitting option, rather than being forced to decide whether they agree or disagree, which may damage the validity of the test. The inclusion of the \textit{slightly agree} and \textit{slightly disagree} options allow participants who feel that they only partially agree with a statement to pick a side without sounding too opinionated, which may dissuade some from picking the completely neutral option in these cases.
 
-The random turn-order was decided upon based on the problem statement regarding directing attention. This would be a way to test different ways to direct the players attention without them growing accustomed to the turn-order. The time limit is to increase the pace of the game. 
+\subsection{Performance metrics}
+Performance metrics measure tangible results observed throughout the experiment. While playing the game, players were recorded both with a video camera and a Kinect 2 which logged when the players looked at the main screen, and when they looked away. The game logged when it was a new player's turn. By comparing these time stamps, it was possible to measure how much time passed from the moment it became a player's turn, to the moment they looked at their smart phone. The time stamps logged by the game also allowed for the measurement of performance time, namely the time it takes for a participant to complete their turn. In addition to this, error rates were also measured; for each turn, it was noted whether a participant looked at their screen at all, and whether they completed their turn before the given time ran out. 
 
+\section{Setup}
+Each test included four participants. Apart from these, three people were present to facilitate the test:
 
-The way the movement and actions work was decided due to the platform having issues with latency on some networks and also the lack of the tactile feedback buttons on a screen provide. This means that moving in a real-time system is less accurate, so a turn-based structure is used instead.
+\begin{itemize}
+	\item A \textbf{test conductor}, who instructed the participants in the terms of the test
+	\item A \textbf{note taker}, who wrote down anything of note
+	\item A \textbf{technician}, who made sure that both the Kinect 2 and the game were running smoothly, and that the camera was on.
+\end{itemize}
 
+Apart from the test conductor, the people facilitating the test remained as silent as possible throughout the test in order to not interfere with its results. The following materials were used for the purpose of this test:
 
-The attack action works like described based again on testing the problem statement. The way it works forces the players to redirect attention when it is not necessarily their turn. 
-The minigame was implemented so as not to make the winning side be the one who initiated the attack or chosen at random. 
-Besides being pushed back the losers also gets one less action in their next turn. This works as a consequence for not winning combat, and the stunning is so the loser cannot attack back on their following turn. 
+\begin{itemize}
+	\item A television screen
+	\item A computer that runs the game, connected to the TV screen through an HDMI cable
+	\item A Kinect 2
+	\item A computer that runs the Kinect, connected to it through a USB 3.0 cable
+	\item 4 smartphones
+	\item A video camera
+	\item One consent form for each participant
+	\item Four questionnaires for each participant
+	\item Four different builds of the game
+\end{itemize}
 
+These materials were set up as shown in Figure \ref{fig:test_setup}. The four participants were seated (not necessarily on a sofa) in front of a large television screen, to which a computer running the game was connected through an HDMI cable. This way, the main screen for all four participants was the television screen. Underneath this screen was a Kinect 2 which was aimed at the participants while connected to another computer through a USB 3.0 cable. In front of each participant was a smartphone, which was connected to the game.
 
-The digging action is a long action and the reason for this is for the other players to have a chance at disrupting the digger, to give a bit of drama and also to keep the other players attention on the whole game and not just their own character. 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/test_setup.png}
+	\caption{Test setup, showing the television screen (A), the Kinect 2 (B), a computer running the game (C), a computer running the Kinect 2 (D), seating for participants (E), and 4 smartphones (F)}\label{fig:test_setup}
+\end{figure}
 
+\section{Method}
+Once participants were seated, the test conductor explained the test procedure as well as the basics of the game. Once every participant was ready, the game began, and participants played freely until a the game ended or 10 minutes had passed, whichever came first. While the game was ongoing, the participants were filmed with the video camera, and data about their gaze was recorded with the Kinect 2. Each group of participants played through four iterations of the game, in a randomised order. The four iterations are, as mentioned in Chapter \ref{ch:game}, fo
 
+\begin{enumerate}[label=\Alph*)]
+	\item 
+	\item u hottie
+\end{enumerate}
 
-\subsection{Interfaces}
-The game has two different type of screens. A shared main screen and a personal smartphone screen for each player. This is a feature of the AirConsole platform.
+After the game has ended or the given time is up, participants are given a questionaire, with a mixture of qualitative questions and rating scale questions. These questions are as follows:
+\section{Results}
 
-On the main screen is the game arena which is a tropical island. This island has a visible grid pattern on it to indicate to the players where they can walk and where the boundaries of the arena are. Interactable objects such as palm trees, ferns and skulls are placed inside of the corners of these grids and they can be interacted with if a player character is on the same grid space. The island is square and it is viewed from an isometric perspective. 
-
-Additionally there is also a scoreboard on the main screen displaying the number of map pieces each player has.
-
-The grid based arena was chosen to make it easier for the player to navigate the map. The placement of the objects are also placed where the players find it most intuitive to be able to interact with them when on the same tile, according to the paper test. 
-
-
-The island’s shape is to fit the cartoon-ish style and the grid pattern. The scoreboard it there for strategic purposes, so that the players can keep track on how far the other player are, and how close they are to being able to find the treasure. 
-
-\todo{add picture of the main screen interface}
-
-The smartphone screens displays the colour of the player, six buttons you can tab during your turn to plan the turn. 
-
-\todo{add picture of smartphone interface}
-
-As can be seen on figure XX the buttons are arranged in a two-by-three pattern with the movement buttons slightly closer than the other two buttons. Two empty spaces at the top is where the planned actions are shown. The button with a checkmark is at the upper right corner and is the button that needs to be tapped to implement the actions the player planned. The last thing on the smartphone screen is a button with a little grid-map on it and a number underneath it. The left number is the number of map pieces the player is in possession of and the right number is the number of pieces needed. If the button with the grid-map is tapped the treasure map will appear on the smartphone screen. Another tap and it is gone. 
-
-
-When designing the smartphone interface it was incredibly important that it did not become overcrowded with buttons and other features. Initially the treasure map was shown next to the controls, but this was revised since if a player is using a small smartphone, then they will have a lot of trouble being able to tap the correct actions etc. Therefore it was decided that the map was to be a pop-up that only shows if the player taps on the map button.  
+\section{Analysis and Conclusion}
