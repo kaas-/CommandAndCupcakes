@@ -28,7 +28,7 @@ In the end, the concept pictured in Figure \ref{fig:pirate_concept_2} was decide
 \section{3D graphics}
 
 \subsection{Modeling}
-The models for this game are built and animated using Autodesk Maya, and consist of transformed primitives, such as spheres and cylinders. For example, the head of the player-controlled pirate characters is a transformed sphere, and the torso as well as the limbs consist of cylinders. The trunks of the palm trees are created from cylinders, and their leaves from planes. All four pirate characters have identical meshes, seen in Figure \ref{fig:pirate_mesh}.
+The models for this game are built and animated using Autodesk Maya, and consist of transformed primitives, such as spheres and cylinders. For example, the head of the player-controlled pirate character is a transformed sphere, and the torso as well as the limbs consist of cylinders. The trunks of the palm trees are created from cylinders, and their leaves from planes. All four pirate characters have identical meshes, seen in Figure \ref{fig:pirate_mesh}.
 
 \begin{figure}[h!]
 	\centering
@@ -36,7 +36,7 @@ The models for this game are built and animated using Autodesk Maya, and consist
 	\caption{Pirate mesh: front, side and back view \label{fig:pirate_mesh}}
 \end{figure}
 
-The components of the pirate mesh were transformed based on two reference images of the character design, assigned to two image planes, one showing a frontal view of the character, and one showing a side view. These planes can be seen in Figure \ref{fig:pirate_planes}. However, small changed were made during modeling, such as the short pigtails, which were changed intp longer braids in the final version.
+The components of the pirate mesh were transformed based on two reference images of the character design, assigned to two image planes, one showing a frontal view of the character, and one showing a side view. These planes can be seen in Figure \ref{fig:pirate_planes}. However, small changes were made during modeling, such as the short pigtails, which were changed into longer braids in the final version.
 
 \begin{figure}[h!]
 	\centering
@@ -86,7 +86,7 @@ The interactive objects have likewise been textured. These objects can be seen i
 \section{Rigging and animation}
 In order to animate the models, they have all been rigged. A skeleton is created and assigned to a model, with joints at the places where the model in question should be able to bend. For example, the pirate model seen in Figure \ref{fig:rigged_pirate} has a skeleton assigned to it, with joints at its shoulders, wrists, knees, et cetera.
 
-Once the skeleton is built, each joint's \textit{weight} is painted onto the model. The weight of a joint controls which parts of the body move as the joint is rotated, and how much. Figure \ref{fig:elbow_pirate} show weights painted in the pirate's left elbow. Furthermore, limits are set for each joint so that they don't bend too far, or bent in the wrong direction. For example, the pirate's knees can only bend in the y axis, and only towards the rear.
+Once the skeleton is built, each joint's \textit{weight} is painted onto the model. The weight of a joint controls which parts of the body move as the joint is rotated, and how much. Figure \ref{fig:elbow_pirate} shows weights painted in the pirate's left elbow. Furthermore, limits are set for each joint so that they don't bend too far, or bend in the wrong direction. For example, the pirate's knees can only bend on the y-axis, and only towards the rear.
 
 \begin{figure}[h!]
 	\centering
@@ -106,7 +106,7 @@ Once the skeleton is built, each joint's \textit{weight} is painted onto the mod
 	\label{fig:riggin}
 \end{figure}
 
-With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this projects, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation wjich will play when they are searched.
+With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this projects, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation which will play when they are searched.
 
 \begin{figure}[h!]
 	\centering
@@ -160,6 +160,24 @@ The actual fighting screen which appears during a fight sequence between two pla
 	\includegraphics[width=0.7\textwidth]{figures/fight.png}
 	\caption{The fight screen}
 	\label{fig:fight}
-\end{figure}\todo{replace ththe FIGHT! image later later}
+\end{figure}\todo{replace the FIGHT! image later later}
 
 \todo{Add some stuff about the general interface}
+
+\section{Phone interface}
+The smart phone has three primary screens besides the fight screen: the planning screen, the waiting screen and the map screen. Only two out of the three were complete at the end of this project, the planning and the waiting screen. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/planningScreen.png}
+	\caption{The planning screen}
+	\label{fig:plan}
+\end{figure}
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/waitingScreen.png}
+	\caption{The waiting screen}
+	\label{fig:wait}
+\end{figure}
