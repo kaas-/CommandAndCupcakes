@@ -28,7 +28,7 @@ In the end, the concept pictured in Figure \ref{fig:pirate_concept_2} was decide
 \section{3D graphics}
 
 \subsection{Modeling}
-The models for this game are built and animated using Autodesk Maya, and consist of transformed primitives, such as spheres and cylinders. For example, the head of the player-controlled pirate characters is a transformed sphere, and the torso as well as the limbs consist of cylinders. The trunks of the palm trees are created from cylinders, and their leaves from planes. All four pirate characters have identical meshes, seen in Figure \ref{fig:pirate_mesh}.
+The models for this game are built and animated using Autodesk Maya \cite{Autodesk}, and consist of transformed primitives, such as spheres and cylinders. For example, the head of the player-controlled pirate characters is a transformed sphere, and the torso as well as the limbs consist of cylinders. The trunks of the palm trees are created from cylinders, and their leaves from planes. All four pirate characters have identical meshes, seen in Figure \ref{fig:pirate_mesh}.
 
 \begin{figure}[h!]
 	\centering
@@ -36,7 +36,7 @@ The models for this game are built and animated using Autodesk Maya, and consist
 	\caption{Pirate mesh: front, side and back view \label{fig:pirate_mesh}}
 \end{figure}
 
-The components of the pirate mesh were transformed based on two reference images of the character design, assigned to two image planes, one showing a frontal view of the character, and one showing a side view. These planes can be seen in Figure \ref{fig:pirate_planes}. However, small changed were made during modeling, such as the short pigtails, which were changed intp longer braids in the final version.
+The components of the pirate mesh were transformed based on two reference images of the character design, assigned to two image planes, one showing a frontal view of the character, and one showing a side view. These planes can be seen in Figure \ref{fig:pirate_planes}. However, small changed were made during modeling, such as the short pigtails, which were changed into longer braids in the final version.
 
 \begin{figure}[h!]
 	\centering
@@ -44,10 +44,16 @@ The components of the pirate mesh were transformed based on two reference images
 	\caption{Pirate mesh: front, side and back view \label{fig:pirate_planes}}
 \end{figure}
 
-The interactive objects were not created using this technique, but rather modelled "free-hand". Like the character, the design of these objects aim for simplicity rather than realism.
+The interactive objects were not created using this technique, but rather modelled "free-hand". The lack of planes to built from is seen in Figure \ref{fig:palmtree_mesh}. Like the character, the design of these objects aim for simplicity rather than realism.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/palmtree_mesh.png}
+	\caption{Palm tree mesh \label{fig:palmtree_mesh}}
+\end{figure}
 
 \subsection{Textures}
-Each pirate is assigned a \textit{lambert} material with a simple texture applied to it. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt colour. The colours of the four characters are red, green, yellow, and blue, as pictured in figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen so that it is not too similar to the yellow colour --- the two were reviewed by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
+Each pirate is assigned a \textit{lambert} material with a simple texture applied to it. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt colour. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
 
 \begin{figure}[h!]
 	\centering
@@ -106,7 +112,7 @@ Once the skeleton is built, each joint's \textit{weight} is painted onto the mod
 	\label{fig:riggin}
 \end{figure}
 
-With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this projects, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation wjich will play when they are searched.
+With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this projects, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation that will play when they are searched.
 
 \begin{figure}[h!]
 	\centering
