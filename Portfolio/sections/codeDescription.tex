@@ -1,0 +1,26 @@
+\chapter{Code Description}\label{ch:codeDescription}
+\section{Controller Code}\label{controllerCode}
+The controller for the AirConsole is coded in HTML, CSS and JavaScript. This code is loaded unto the smartphone when connected to the game and run there. The following subsections describe the code implemented to make the controller work.
+
+\subsection{HTML}\label{controllerHTML}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figures/controller_box_model.png}
+	\caption{Box Model of the controller's Planning Screen \label{fig:controllerBoxModel}}
+\end{figure}
+
+The controller HTML defines three areas, which can be switched between to be shown on the smartphone. These three areas are the Planning Screen, the Waiting Screen and the Combat Screen. These areas are defines with \texttt{<div>} tags that receive classes and unique IDs to be used by the CSS and JavaScript code. This allows us to show the current Screen at the current time in a player's turn.
+
+Figure \ref{fig:controllerBoxModel} illustrates a box model of how the Planning Screen is set up. Each \texttt{<div>} tag defines an area within the Planning Screen, which can be nested within other \texttt{<div>} tags. This makes a layered structure, where formatting of one tag affects everything inside it too.
+
+The Planning Screen consist of four sub-areas: the map piece counter, the action slots, the five actions buttons and the execute turn button. These areas are then further defined into the individual counters and buttons.
+
+The Waiting Screen is structured identically to the Planning, with the exception that an extra element is inserted. This element contains the overlay image that shows the player that this is the Waiting Screen.
+
+The Combat Screen consists of four areas, where three of them defines areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press.
+
+\subsection{Javascript}\label{controllerJavascript}
+
+
+\subsection{CSS}\label{controllerCSS}
