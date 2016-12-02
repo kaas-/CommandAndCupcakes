@@ -153,7 +153,8 @@ When a fight is about to commence, another image, seen in Figure \ref{fig:get_re
 	\label{fig:get_ready}
 \end{figure}
 
-The actual fighting screen which appears during a fight sequence between two players is unsaturated. Ideally, by this point, the player's attention is already aimed at the phone screen, either nudged by the tactile feedback or the "Get ready to FIGHT!" image, depending on the test. The fighting screen can be seen in Figure \ref{fig:fight}.\todo{add some stuff about the buttons as well}
+The actual fighting screen which appears during a fight sequence between two players is unsaturated. Ideally, by this point, the player's attention is already aimed at the phone screen, either nudged by the tactile feedback or the "Get ready to FIGHT!" image, depending on the test. The fighting screen can be seen in Figure \ref{fig:fight}.
+\todo{add some stuff about the buttons as well}
 
 \begin{figure}[h!]
 	\centering
@@ -165,7 +166,7 @@ The actual fighting screen which appears during a fight sequence between two pla
 \todo{Add some stuff about the general interface}
 
 \section{Phone interface}
-The smart phone has three primary screens besides the fight screen: the planning screen, the waiting screen and the map screen. Only two out of the three were complete at the end of this project, the planning and the waiting screen. 
+The smart phone has three primary screens besides the fight screen: the planning screen, the waiting screen and the map screen. Only two out of the three were complete at the end of this project, the planning as seen on Figure \ref{fig:plan}, and the waiting screen a seen on Figure \ref{fig:wait}. 
 
 \begin{figure}[h!]
 	\centering
@@ -181,3 +182,18 @@ The smart phone has three primary screens besides the fight screen: the planning
 	\caption{The waiting screen}
 	\label{fig:wait}
 \end{figure}
+
+All the phone screens except for the combat screen share the same background. The background was chosen to resemble old paper, like a cliché treasure map. This determined the rest of the colour scheme, with the buttons being either white or differing shades of beige. The colour scheme was also chosen to not be too eye-catchy in order not to direct attention to any particular thing, with the exception of the ready button which is rather attention grabbing. All screens will have the AirConsole logo in the middle of the top of the screen. 
+
+There are 9 objects on the screen, 8 of which are interactable.
+Going left to right top-down the first object is the button which will take you to the map screen. It is a half circle with a simple illustration of a treasure map inside to indiccate that you will find the map screen if this button is pressed. This is not interactable since the map screen is not implemented for this version of the game. Underneath that button is two numbers representing number of map pieces; the left one shows the players current amount of map pieces and the right shows the total map pieces necessary to win.
+
+The next objects are two boxes in the top of the screen which are the planning boxes. They represent the first and second action the player will execute. They are automatically chosen in the order 1-2 but you are able to plan otherwise by first clicking on the number and then clicking on the desired action. When clicking an action the icon will show up in the chosen planning box. They have a transparent background to indicate that they are not buttons. 
+
+Onwards there are the movement buttons placed in a two by two grid. Since the arena is in an isometric angle and is seen from the corner, the movement arrows are diagonal and not horizontal/vertical. They have a light beige colour called \textit{cornsilk} in CSS. 
+
+The next object is the interact button. This is illustrated with a magnifying glass, since the interact action is used for searching an object of map pieces. The background colour is different from the movement buttons to distinguish it from them and make it clear that it is a different action. The colour is called \textit{moccasin} in CSS, and was also chosen for not being too eye-catching but still different enough from the others. 
+
+Finally there is the ready button. This is a green check mark on a pure white background, which makes it the object that stands out the most on the screen. it is also the biggest object on the screen illustrating its importance. a turn will not execute if this button is not pressed. 
+
+The waiting screen has all the same objects as the planning screen. On top of it all is a transparent background with the word "WAITING" taking up most of the screen. This makes the buttons non-interactable, with the exception for the map button which if it had been implemented would be interactive.  
