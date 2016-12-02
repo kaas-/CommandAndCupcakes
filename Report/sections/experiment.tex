@@ -10,7 +10,7 @@ Since the focus of this problem formulation is on directing attention between tw
 \section{Metrics}
 In order to test the problem formulation, a combination of several metrics were measured. These metrics may be split into two categories: performance and user experience metrics.
 
-\subsection{User experience metrics}
+\subsection{User experience metrics}\label{subsec:user_experience_metrics}
 After playing an iteration of the game, test participants were asked to fill out a questionnaire. The answers from this questionnaire serve as user experience metrics. As this is self-reported data from the participants, it is fit for measuring the users' own perception, but less so for measuring their tangible performance. However, as the users' own experience is still relevant to the problem formulation, this experiment made use of self-report questionnaires. The questions in the questionnaire were as follows:
 
 \begin{enumerate}
@@ -30,7 +30,7 @@ After playing an iteration of the game, test participants were asked to fill out
 
 The rating scale statements (that is, the statements presented under question 1) provide seven possible answers: Strongly disagree, disagree, somewhat disagree, neutral, somewhat agree, agree, and strongly agree. The inclusion of the \textit{neutral} option allows participants who neither agree nor disagree with a statement to pick a fitting option, rather than being forced to decide whether they agree or disagree, which may damage the validity of the test. The inclusion of the \textit{slightly agree} and \textit{slightly disagree} options allow participants who feel that they only partially agree with a statement to pick a side without sounding too opinionated, which may dissuade some from picking the completely neutral option in these cases.
 
-\subsection{Performance metrics}
+\subsection{Performance metrics}\label{subsec:performance_metrics}
 Performance metrics measure tangible results observed throughout the experiment. While playing the game, players were recorded both with a video camera and a Kinect 2 which logged when the players looked at the main screen, and when they looked away. The game logged when it was a new player's turn. By comparing these time stamps, it was possible to measure how much time passed from the moment it became a player's turn, to the moment they looked at their smart phone. The time stamps logged by the game also allowed for the measurement of performance time, namely the time it takes for a participant to complete their turn. In addition to this, error rates were also measured; for each turn, it was noted whether a participant looked at their screen at all, and whether they completed their turn before the given time ran out. 
 
 \section{Setup}
@@ -65,14 +65,17 @@ These materials were set up as shown in Figure \ref{fig:test_setup}. The four pa
 \end{figure}
 
 \section{Method}
-Once participants were seated, the test conductor explained the test procedure as well as the basics of the game. Once every participant was ready, the game began, and participants played freely until a the game ended or 10 minutes had passed, whichever came first. While the game was ongoing, the participants were filmed with the video camera, and data about their gaze was recorded with the Kinect 2. Each group of participants played through four iterations of the game, in a randomised order. The four iterations are, as mentioned in Chapter \ref{ch:game}, fo
+Once participants were seated, the test conductor explained the test procedure as well as the basics of the game. Once every participant was ready, the game began, and participants played freely until a the game ended or 10 minutes had passed, whichever came first. While the game was ongoing, the participants were filmed with the video camera, and data about their gaze was recorded with the Kinect 2. Each group of participants played through four iterations of the game, in a randomised order. The four iterations, as mentioned in Chapter \ref{ch:game}, utilise four different methods for directing the player's attention to their phone screen when it becomes their turn, as well as when they are engaged in combat. These four methods are:
 
 \begin{enumerate}[label=\Alph*)]
-	\item 
-	\item u hottie
+	\item No feedback
+	\item Tactile feedback (phone vibration
+	\item Visual feedback (warning image on main screen)
+	\item Visual feedback (warning image on phone screen)
 \end{enumerate}
 
-After the game has ended or the given time is up, participants are given a questionaire, with a mixture of qualitative questions and rating scale questions. These questions are as follows:
+After a group of four participants had tried an iteration of the game, every participant was asked to fill out the questionnaire described in section \ref{subsec:user_experience_metrics}. While the game was ongoing, the Kinect logged whether players looked at or away from the main screen, and the game logged whose turn it was at any given time. The note taker noted down each player's error rates as described in section \ref{subsec:performance_metrics}.
+
 \section{Results}
 
 \section{Analysis and Conclusion}
