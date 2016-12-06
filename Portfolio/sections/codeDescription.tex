@@ -27,3 +27,34 @@ The Combat Screen consists of four areas, where three of them defines areas for 
 When writing code for browsers, CSS is the part that determines how the web page actually looks. It is a fairly straight forward language to program. 
 
 For this project a external style sheet was implemented which creates a .css-file. This allows the style-sheet to be edited independent of the .html-file. The external style-sheet was used to determine the different button areas, the buttons different colours, the size of the different objects, the font and the font size, load the images and determine the hierarchy of the different objects. 
+
+As mentioned in a previous section the <div> elements are assigned classes and/or IDs. These work by calling them in the CSS code and the assigning attributes directly to them as seen in the examples in Figure \ref{IDex} and \ref{Classex}. 
+\begin{figure}
+\begin{lstlisting}
+#waiting_image{
+		position		: fixed;
+		border			: 1px solid opacity(0.5);
+		background-color	: rgba(255, 255, 255, 0.5);
+		height			: 100%;
+		width			: 100%;
+		font-size		: 20vmax;
+		font-family		: pirate;
+		z-index			: 1;
+		line-height		: 250%;
+		text-align		: center;
+	}
+\end{lstlisting} 
+\caption{An example of the attributes of an ID \label{IDex}}
+\end{figure}
+
+\begin{figure}
+\begin{lstlisting}
+.map_text{
+		font-family		: pirate;
+		font-size		: 4vmax;
+		position		: absolute;
+		top				: 12vmax;
+	}
+\end{lstlisting} 
+\caption{An example of the attributes of a class \label{Classex}}
+\end{figure}
