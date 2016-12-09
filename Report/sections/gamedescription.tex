@@ -44,22 +44,40 @@ The movement buttons are arranged in a two-by-two pattern, with the interact but
 When designing the smartphone interface it was incredibly important that it did not become overcrowded with buttons and other features. Initially the treasure map was an actual map and shown next to the controls. However, this was revised since if a player is using a small smartphone, then the button would not be very large to make room for the map. This in turn would lead to difficulties tapping the correct button. Since the map pieces was not necessary for the experiment of attention, their aesthetic representation was ultimately scrapped and abstracted with a simple icon and number.
 
 \section{Attention-Directing Cues}
-Four versions are made of this game. Three of them implement different methods to direct attention, where the fourth implements no attention-directing cues. This no-cue version is used in the experiment as a control for how people will distribute their attention without giving any cues on how where they are supposed to look.
+Four versions are made of this game. Three of them implement different methods to direct attention, where the fourth implements no attention-directing cues. 
 
-The methods for directing attention in the three versions are described in the Subsections \ref{sub:tactile_feedback}, \ref{sub:visual_main}, and \ref{sub:visual_smartphone}. The implemented methods are:
+These four versions are described in the Subsections \ref{sub:no_feedback}, \ref{sub:tactile_feedback}, \ref{sub:visual_main}, and \ref{sub:visual_smartphone}. The implemented methods are:
 
 \begin{itemize}
-\item[Tactile feedback through vibrations in the smartphone]
-\item[Visual feedback through splash screens on the main screen]
-\item[Visual feedback through splash screens on the smartphones]
+\item Tactile feedback through vibrations in the smartphone
+\item Visual feedback through splash screens on the main screen
+\item Visual feedback through splash screens on the smartphones
 \end{itemize}
 
 The feedback is giving to individual players when their turn starts and in the beginning of a fight in which they participate.
 
-\subsection{Tactile feedback}\label{sub:tactile_feedback}
+\subsection{No feedback}\label{sub:no_feedback}
+Labelled \textit{A} in the experiment, this no-cue version is used as a control for how people will distribute their attention when the system does not give any cues on how where users are supposed to look. With this version, it is possible to investigate if certain attention cues work at all, by comparing the results of the version with said attention cues to the data from this version.
 
+\subsection{Tactile feedback}\label{sub:tactile_feedback}
+Labelled \textit{B} in the experiment, this version of the game uses vibrations in the smartphones. The phone of a player vibrates every time the player's turn starts, and at the start of a fight that said is part of. This vibration is one continuous pulse lasting for 200 milliseconds.
 
 \subsection{Visual feedback - The main screen}\label{sub:visual_main}
+Labelled \textit{C} in the experiment, this version of the game displays splash screens on the main screen as attention cues. A splash screen is shown every time a player begins their turn, which corresponds to the colour of that player's controller and pirate. An example of this can be seen in Figure \ref{fig:redturn}.
 
+A splash screen is also shown on the main screen every time a fight begins between any two players. This splash screen can be seen in Figure \ref{fig:fight_splash}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/redturn.png}
+	\caption{Splash screen for red player's turn}\label{fig:redturn}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figures/getready.png}
+	\caption{Splash screen for a beginning fight}\label{fig:fight_splash}
+\end{figure}
 
 \subsection{Visual feedback - The smartphones}\label{sub:visual_smartphone}
+Labelled \textit{D} in the experiment, this version of the game uses the same splash screens as in version \textit{C}. However, only the splash screens uses for when a player's turn switches are used. These splash screens are shown on the smartphones, and a splash screen is only shown to the player that is currently starting their turn. This means that in case red player is starting their turn, then only red player will have a splash screen displayed on their smartphone.
