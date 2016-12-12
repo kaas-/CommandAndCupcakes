@@ -10,6 +10,25 @@ The controller for the AirConsole is coded in HTML, CSS and JavaScript. This cod
 	\caption{Box Model of the controller's Planning Screen \label{fig:controllerBoxModel}}
 \end{figure}
 
+\begin{figure}
+\begin{lstlisting}
+<!--COMBAT SCREEN-->
+<div id="combat_splash" class="view"> READY STEADY GO </div>
+<div id="combat" class="view">
+
+	<div id="start_combat">
+		<div id="1" class="b" onclick="press(this.id)"></div>
+		<div id="2" class="b" onclick="press(this.id)"></div>
+		<div id="3" class="b" onclick="press(this.id)"></div>
+	</div>
+</div>
+<!--COMBAT RESULT SCREENS-->
+<div id="combat_result_won" class="view">YOU WON</div>
+<div id="combat_result_lost" class="view">YOU LOST</div>
+\end{lstlisting}
+\caption{Code snippet structuring the Combat Screen \label{HTMLex}}
+\end{figure}
+
 The controller HTML defines three areas, which can be switched between to be shown on the smartphone. These three areas are the Planning Screen, the Waiting Screen and the Combat Screen. These areas are defines with \texttt{<div>} tags that receive classes and unique IDs to be used by the CSS and JavaScript code. This allows us to show the current Screen at the current time in a player's turn.
 
 Figure \ref{fig:controllerBoxModel} illustrates a box model of how the Planning Screen is set up. Each \texttt{<div>} tag defines an area within the Planning Screen, which can be nested within other \texttt{<div>} tags. This makes a layered structure, where formatting of one tag affects everything inside it too.
@@ -18,15 +37,15 @@ The Planning Screen consist of four sub-areas: the map piece counter, the action
 
 The Waiting Screen is structured identically to the Planning, with the exception that an extra element is inserted. This element contains the overlay image that shows the player that this is the Waiting Screen.
 
-The Combat Screen consists of four areas, where three of them defines areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press.
+The Combat Screen consists of four areas, where three of them defines areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press. The code for this part of the structure is shown in Figure \ref{HTMLex}.
 
 \subsection{Javascript}\label{controllerJavascript}
 
 
 \subsection{CSS}\label{controllerCSS}
-When writing code for browsers, CSS is the part that determines how the web page actually looks. It is a fairly straight forward language to program. 
+When writing code for browsers, CSS is the part that determines how the web page actually looks.
 
-For this project a external style sheet was implemented which creates a .css-file. This allows the style-sheet to be edited independent of the .html-file. The external style-sheet was used to determine the different button areas, the buttons different colours, the size of the different objects, the font and the font size, load the images and determine the hierarchy of the different objects. 
+For this project a external style sheet was implemented which creates a .css file. This allows the style-sheet to be edited independent of the .html-file. The external style-sheet was used to determine the different button areas, the buttons different colours, the size of the different objects, the font and the font size, load the images and determine the hierarchy of the different objects. 
 
 As mentioned in a previous section the <div> elements are assigned classes and/or IDs. These work by calling them in the CSS code and the assigning attributes directly to them as seen in the examples in Figure \ref{IDex} and \ref{Classex}. 
 \begin{figure}
@@ -53,7 +72,7 @@ As mentioned in a previous section the <div> elements are assigned classes and/o
 		font-family		: pirate;
 		font-size		: 4vmax;
 		position		: absolute;
-		top				: 12vmax;
+		top			: 12vmax;
 	}
 \end{lstlisting} 
 \caption{An example of the attributes of a class \label{Classex}}
