@@ -1,6 +1,6 @@
 \chapter{Code Description}\label{ch:codeDescription}
 \section{Controller Code}\label{controllerCode}
-The controller for the AirConsole is coded in HTML, CSS and JavaScript. This code is loaded unto the smartphone when connected to the game and run there. The following subsections describe the code implemented to make the controller work.
+The controller for the AirConsole is coded in HTML, CSS and JavaScript. This code is loaded unto the smartphone when connected to the game and runs there. The following subsections describe the code implemented to make the controller work.
 
 \subsection{HTML}\label{controllerHTML}
 
@@ -33,21 +33,22 @@ The controller HTML defines three areas, which can be switched between to be sho
 
 Figure \ref{fig:controllerBoxModel} illustrates a box model of how the Planning Screen is set up. Each \texttt{<div>} tag defines an area within the Planning Screen, which can be nested within other \texttt{<div>} tags. This makes a layered structure, where formatting of one tag affects everything inside it too.
 
-The Planning Screen consist of four sub-areas: the map piece counter, the action slots, the five actions buttons and the execute turn button. These areas are then further defined into the individual counters and buttons.
+The Planning Screen consist of four sub-areas: the map piece counter, the action slots and timer, the five action buttons and the execute turn button. These areas are then further defined into the individual counters and buttons.
 
-The Waiting Screen is structured identically to the Planning, with the exception that an extra element is inserted. This element contains the overlay image that shows the player that this is the Waiting Screen.
+The Waiting Screen is structured identically to the Planning one, with a couple of exceptions. The first one is that there is an extra element that contains the overlay image, thus showing the player that this is the Waiting Screen. The second one is the absence of the timer in the Waiting Screen.
 
-The Combat Screen consists of four areas, where three of them defines areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press. The code for this part of the structure is shown in Figure \ref{HTMLex}.
-
+The Combat Screen consists of four areas, where three of them define areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press. The code for this part of the structure is shown in Figure \ref{HTMLex}.
+\todo{update Planning screen image, show the timer}
+\todo{maybe change the image with divs to a one with actual controller set as background to illustrate how divs work}
 \subsection{Javascript}\label{controllerJavascript}
 
 
 \subsection{CSS}\label{controllerCSS}
 When writing code for browsers, CSS is the part that determines how the web page actually looks.
 
-For this project a external style sheet was implemented which creates a .css file. This allows the style-sheet to be edited independent of the .html-file. The external style-sheet was used to determine the different button areas, the buttons different colours, the size of the different objects, the font and the font size, load the images and determine the hierarchy of the different objects. 
+For this project a external style sheet was implemented which creates a .css file. This allows the style-sheet to be edited independently of the .html-file. The external style-sheet was used to determine the different button areas, their colours, the size of the different objects, the font and its size, load the images and determine the hierarchy of the different objects. 
 
-As mentioned in a previous section the <div> elements are assigned classes and/or IDs. These work by calling them in the CSS code and the assigning attributes directly to them as seen in the examples in Figure \ref{IDex} and \ref{Classex}. 
+As mentioned in a previous section, the <div> elements are assigned classes and/or IDs. These work by calling them in the CSS code and the assigning attributes directly to them as seen in the examples in Figure \ref{IDex} and \ref{Classex}. 
 \begin{figure}
 \begin{lstlisting}
 #waiting_image{
