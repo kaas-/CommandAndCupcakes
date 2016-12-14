@@ -1,0 +1,44 @@
+\chapter{Further implementation}\label{ch:further_implementation}
+The project made a game to test how different attention cues work on directing the attention of players. This means that with the results gathered in the previous chapter, an iteration of the game can be made.
+
+However, many features were considered and ultimately cut from the version used in the experiment. This was primarily due to time constraints, but it was also because they did not contribute to the experiment, but instead would be implemented to make the game of higher quality.
+
+Since AirConsole is a video game platform, the game made in this project would have to be further developed into a higher quality product if it were to be published on the platform later. Therefore, this chapter describes features cut during development to save time, plus further features found through the experiment.
+
+\section{Digging for the treasure}\label{sec:digging}
+The version of the game used in the test has the win condition of gathering all nine map pieces. This was to actually have a goal for the players to strive for during testing.
+However, the original win condition was to gather all nine map pieces, and then dig up the treasure in a square the map indicated. To implement this win condition, further features would have to be in the game:
+\begin{itemize}
+\item Functionality to determine where the treasure is buried
+\item A treasure map, split into pieces
+\item A menu on the controller to view collected treasure map pieces
+\item An action used to dig in a square
+\end{itemize}
+
+Currently, the map pieces are randomly hidden inside objects on the island. Likewise, the treasure was also conceptualised to be hidden in a random location on the island. To find its exact location, a player would need to gather all the pieces of the map. Each collected map piece would illustrate a part of the island, and when all 9 map pieces where collected, then you would be able to clearly discern which part of the island the map illustrates. Additionally, an X would be placed on the now complete map, to indicate the exact square where the treasure would be hidden.
+
+In order for you to review which map pieces were in your possession, a separate screen would be implemented. This screen would have a 3x3 grid, with each cell being able to contain a collected map piece. Each cell would be unique to a specific map piece, so when a map piece is collected it will automatically be shown in its correct cell.
+
+There would be a button to go between the planning screen and the map screen. This button is implemented into the controller used in the experiment. However, instead of taking you to a separate screen when clicked, its functionality was disabled and the map counter was placed underneath it.
+
+When the location of the treasure was known by the player, they would have the ability to dig it up. This would be implemented as an additional action available to all players. The icon for the action button would have looked like Figure \ref{fig:dig}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.2\textwidth]{figures/dig.png}
+	\caption{Dig action icon \label{fig:dig}}
+\end{figure}
+
+The dig button was a unique action in that it would take two actions to execute instead of the regular one. This meant that you would use your whole turn to start digging in the square you were currently located in. If you were left alone until the start of your next turn, then you would have successfully dug up the treasure and won the game. However, all other players would see that you had started to dig in that spot, and had the chance to stop you by attacking you.
+
+The dig action did not require you to have all the map pieces in order to start digging somewhere. If you had an idea of which square the treasure could be located in from a partially completed map, then you could still dig to try your luck. Since the treasure would be hidden at the start of the game, then if you guessed correctly, and were not interrupted in digging, you would win the game.
+
+This win condition would increase the match length, as it is adding more tasks to do for the individual player on top of what they are already supposed to do. This means that to keep the matches short, fewer map pieces should be collected to get the final map. This way, the game is supposed to be played across multiple matches to find a final winner. Playtesting would be needed in order to find the proper balance between map piece amount needed and the match length.
+
+\section{Game changes from results}\label{sec:changes_from_results}
+The game's current state of implementation is a tool to be used to investigate the problem statement. However, further development outside of the project period could be done to change the game from a testing tool to a piece of entertainment media. The following chapter will describe areas of further development derived from results and comments during the experiment.
+
+\subsection{Turn order}\label{sub:turn_order}
+The current turn order is randomly determined at the start of each round. This design decision was directly tied to the experiment so people had to pay attention at all times on the game if players did not want to miss something.
+
+However during the experiment, some participants commented negatively on the random turn order, regarding it as confusing. One way to solve this would be to have a fixed turn order, so that players would have a reliable sense for when it was their turn. This would also prevent some players having very long wait times between their turns. For example, a players starts in one round and is last player in the following round would have to wait through the turns of six other players, potentially making them wait a full minute for a 10 seconds turn. Another way would be to display the turn order on the main screen to keep the randomness and unpredictability as a feature, but not hiding the information to the players. From this information, players could more effectively plan ahead.
