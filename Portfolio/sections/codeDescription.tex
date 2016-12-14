@@ -52,17 +52,17 @@ As mentioned in a previous section, the <div> elements are assigned classes and/
 \begin{figure}
 \begin{lstlisting}
 #waiting_image{
-		position		: fixed;
-		border			: 1px solid opacity(0.5);
-		background-color	: rgba(255, 255, 255, 0.5);
-		height			: 100%;
-		width			: 100%;
-		font-size		: 20vmax;
-		font-family		: pirate;
-		z-index			: 1;
-		line-height		: 250%;
-		text-align		: center;
-	}
+	position		: fixed;
+	border			: 1px solid opacity(0.5);
+	background-color	: rgba(255, 255, 255, 0.5);
+	height			: 100%;
+	width			: 100%;
+	font-size		: 20vmax;
+	font-family		: pirate;
+	z-index			: 1;
+	line-height		: 250%;
+	text-align		: center;
+}
 \end{lstlisting} 
 \caption{An example of the attributes of an ID \label{IDex}}
 \end{figure}
@@ -74,7 +74,91 @@ As mentioned in a previous section, the <div> elements are assigned classes and/
 		font-size		: 4vmax;
 		position		: absolute;
 		top			: 12vmax;
-	}
+}
 \end{lstlisting} 
 \caption{An example of the attributes of a class \label{Classex}}
 \end{figure}
+
+\subsection{Javascript}
+In the current setup of the game, only when four players participate can the game start. Each controller then goes to a waiting state which can be interrupted if there was received a message indicating that:
+\begin{itemize}
+\item it is the current player's turn or
+\item a combat has started.
+\end{itemize}
+
+The controller then goes to either a planning or a fighting state respectively. During the former, a player has the opportunity to choose two actions within a period of 11 seconds, which are then sent to the Game manager. If a player fails to do so within a specified deadline, only those actions that were chosen are sent back to the Game manager, even if one or zero actions have been selected. This is illustrated in Figure \ref{fig:stateMachine}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figures/StateMachineDiagramController.png}
+	\caption{State-machine diagram of the controller. \label{fig:stateMachine}}
+\end{figure}
+
+If a controller goes to a fighting state, a splash screen informing the player of the upcoming battle is shown, instead of the button layout. After a few seconds, a splash screen changes to a new one with different background and buttons randomly positioned within the screen boundaries. The buttons are made invisible after they are pressed. The program keeps track of the order in which the buttons are being pressed and sends out a corresponding message to the Game manager. Depending on the combat outcome, a winning or losing splash screen is shown to a player for a few seconds. 
+
+It is also worth mentioning that the controller code keeps the record of all the map pieces obtained during gameplay. The map pieces are stored in a string containing nine characters, since there is a total of nine map pieces on the "island". A '0' character indicates a missing map piece, while '1' - an obtained map piece. Therefore, at the start of the game, the string is equal to "000000000", which means that a player has zero map pieces. If a player obtains a map piece number five, for example, then the string changes to "000010000". This kind of system is used mainly to prevent obtaining twice the same map piece through combat. For instance, if a player has map pieces number two and six and wins a combat against a player who has only map piece number two, then the winner cannot increase the total number of map pieces to win the game, since only after nine different map pieces are obtained by one player can the victory be achieved. When this condition is fulfilled, meaning that nine out of nine map pieces are collected by a single player, a controller sends a message to the Game manager indicating the overall victory, after which the game is completed. 
+
+\section{Unity code}
+The game was designed in Unity using AirConsole Unity plugin \cite{AirconsoleUnity}. In general, the code is subdivided into three different modules: 
+\begin{itemize}
+	\item game manager code, which handles all of the communication from the server side and is responsible for all of the logic of the game (placing map pieces, assigning random turn order, etc.).
+	\item grid move code, which is responsible for the movement and animation of the pirates
+	\item controller code, which handles the communication from the client side and provides the phone layout, thus making it possible for the player to choose two actions within a period of 11 seconds and also participate in combat.
+\end{itemize}
+\todo{This needs to be unified with controller section}
+
+In the following subsections, the three modules are described in greater detail.
+
+\subsection{GameManager}
+The GameManager is a god object that handles the game’s states, sets up the game arena, and facilitates communication between the game, the AirConsole controllers, and the on-screen player characters. Furthermore, it manages player turns and randomises the player turn order after each round. The GameManager class extends the Unity engine’s \texttt{MonoBehavior} class which means that it is subscribed to certain callbacks from the Unity engine such as Start() which is used for initialization, and Update() which is called every frame. Furthermore, since it instantiates AirConsole, it receives callbacks for events such as devices connecting to and disconnecting from the game, and messages sent from devices to the game. 
+
+\subsubsection{Play area}
+Before the program starts executing, the plane, where all the objects are placed, needs to be set at the right position. Specifically, its topmost corner should be at the origin of the global coordinates, as can be seen in the Figure \ref{fig:playArea}. This is done in order to ease the calculation of the objects positions on the plane, since in that way neither of them can be positioned at the negative x or z axes.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figures/mapFigure.jpg}
+	\caption{The play area. Tiles with map pieces have been highlighted for the sake of this figure.\label{fig:playArea}}
+\end{figure}
+
+The first thing that needs to be done is getting the size of the plane, both in the x and z directions, and dividing it by the specified number of tiles to get the size of each one. Then a tile is assigned an index, depending on its position in the x and z directions. For example, the tile at the origin of the coordinates will have an index 00, and the tile at the opposite corner will have an index 44, since there are 5 tiles in total in both directions. By using this system it is then determined on which tile a object is located on. For instance, if a fern has the coordinates  4.543 and 3.219, then it is located at tile (4, 3). It is also worth mentioning that a tile can have only one interactable object positioned on it.  If a pirate would be on the same tile and the player would choose to inspect the fern, then there is a chance that a map piece would be obtained, which  is determined randomly by the program at the start of each round. In the picture (...), for the sake of clarity, the tiles that contain map pieces are marked yellow. During the real gameplay, however, players have no way of knowing whether a tile with an object contains a map piece or not before interacting with it. It is therefore crucial to have more tiles with objects on them, than there are map pieces. However, if for some reason the condition would not be fulfilled and there would be, for example, six tiles with objects and nine map pieces to be found, then the program automatically changes the total number of map pieces to be six, instead of nine.
+
+\subsubsection{Player turns}
+The turn of a player is structured according to Figure \ref{fig:seqDiagram1} which describes the communication between the GameManager, a given playerObject, and a given AirConsole Controller. Each turn starts with the \texttt{GameManager} sending a message to a controller that it is their turn, and ends when the \texttt{GameManager} calls the \texttt{NextTurn} method. 
+
+\begin{figure}
+	\centering	
+	\includegraphics[width=1\textwidth]{figures/seq_diag_1.png}
+	\caption{The exchange of messages between the GameManager, playerObject, and a controller during a player turn.\label{fig:seqDiagram1}}
+\end{figure}
+
+When a controller receives a turn message the respective user will select a set of two actions for their player character to perform, and send these actions, as an array of two strings, to the \texttt{GameManager}. The \texttt{GameManager} then sends these actions to the appropriate \texttt{playerObject} which then handles these actions. At the end of a turn, the \texttt{GameManager} checks if the current player ends their turn on the same time as another player. If they do, combat is initiated between those two players.
+
+The player may interact with an object as one of their turn actions. This procedure is follows Figure \ref{fig:seqDiag2}. \texttt{GameManager} receives a message from the \texttt{playerObject} that they are interacting with a tile. The tile coordinate of the player is then calculated and the \texttt{HasMapPiece} method returns the boolean value of the corresponding position in the array described in Section x.x.x. If the object contains a map piece, the map piece number is sent to the controller.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figures/seq_diag_2.png}
+	\caption{Interact. \label{fig:seqDiag2}}
+\end{figure}
+
+The structure of a combat event is described in Figure \ref{fig:seqDiag3}. A message is sent to each controller involved in combat, both of which then switch to the combat screen which features a mini-game. Only the first player to respond is acknowledged by the \texttt{GameManager}. If the player responds with a 'success', the \texttt{GameManager} sends a 'loss' message to the other controller which responds with their entire map. This map is then sent to the first controller, which compares the map to their own and copies one map piece to their own map. If the player responds with 'failure' their message will be accompanied by their map. This map is sent to the other player which compares and copies as described previously. In the end of both outcomes, the winning player will send a response to the \texttt{GameManager} which will then advance to the next turn.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\textwidth]{figures/seq_diag_2.png}
+	\caption{Combat event. \label{fig:seqDiag3}}
+\end{figure}
+
+\subsection{GridMove}
+The GridMove class is attached to each individual playerObject. Like the GameManager class it extends the MonoBehavior class and is thus subscribed to the Update callback. The GridMove class accomplishes two things; it executes the movement actions of individual players in order, and it moves player characters according to the grid seen in Figure \ref{fig:playArea}. 
+
+
+GridMove receives actions in the form of two strings in an array, as described in Section x.x.x. These actions are then iterated through using an int value, that is increased at the end of each individual action, and reset when a new set of actions is received. The game flow ensures that all actions are executed before a new set of actions can be sent by a controller. 
+
+
+Whenever an action needs to be executed, a Switch statement determines the nature of the action. If it is a movement action, a coroutine is started which first determines the player character’s current position, and then calculates the end position, that the player needs to stop at. The character will then move each frame, until they have reached the end position, at which point the actionIterator will be incremented to execute the next action. When both actions have been executed, GridMove sends a message to the GameManager.
+
+\section{Difference in builds}
+There were four different variations of the game made for the evaluation. While the first one had no changes, the other three had minor changes implemented. In order to provide the tactile feedback to the player, a function vibrate(milliseconds) is called when the controller leaves the waiting state. For the other version of the game where the splash screens appears upon the controller leaving the waiting state, a function show() for the view manager is executed. For visual feedback on the main screen, Unity cameras and canvases are used to display images on screen. The method ChangeCamera() is used to switch the camera between the arena and the UI message, and  SetSplashScreen(player, splash) is used to set the correct image for the screen. When it is another players turn or a player starts battle the SetSplashScreen(player, splash) is called to make sure we get the correct sprite on the canvas, after this we change the camera with ChangeCamera(). 
+
