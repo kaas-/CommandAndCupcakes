@@ -1,6 +1,6 @@
 \chapter{Visual design}\label{ch:visualDesign}
 \section{Concept art}
-Concept art was created for several iterations of the player-controlled pirate characters, some of which is seen in Figure \ref{fig:pirate_concepts}. They were drawn with a simple, cartoonish look in mind, so that the characters easily catch the players' eyes. 
+Concept art was created for several iterations of the player-controlled pirate characters, some of which is seen in Figure \ref{fig:pirate_concepts}. They were drawn with a simple, cartoonish look in mind, so that the characters could easily catch the players' eyes. 
 
 \begin{figure}[h!]
     \centering
@@ -23,7 +23,7 @@ Concept art was created for several iterations of the player-controlled pirate c
     \caption{Concept art of the pirate characters}\label{fig:pirate_concepts}
 \end{figure}
 
-In the end, the concept pictured in Figure \ref{fig:pirate_concept_2} was decided upon, in part due to its large torso; if the shirt and bandana are a certain colour, that colour will take up a relatively large percentage of the character's surface, allowing for it to be easily seen by the players, even when several characters are on the screen. This is true for any character on screen, since we are using an isometric perspective. This means that any playable character on screen will not become smaller when further away, and all characters will take up the same amount of screen no matter the position.
+In the end, the concept pictured in Figure \ref{fig:pirate_concept_2} was decided upon, in part due to its large torso; if the shirt and bandana are a certain colour, that colour would take up a relatively large percentage of the character's surface, allowing for it to be easily seen by the players, even with several characters present on the screen. This is true for any character on screen, since an isometric perspective is used. This means that any playable character on screen will not become smaller when placed further away, and all characters will take up the same amount of screen no matter the position.
 
 \section{3D graphics}
 
@@ -44,7 +44,7 @@ The components of the pirate mesh were transformed based on two reference images
 	\caption{Pirate mesh: front, side and back view \label{fig:pirate_planes}}
 \end{figure}
 
-The interactive objects were not created using this technique, but rather modelled "free-hand". The lack of planes to built from is seen in Figure \ref{fig:palmtree_mesh}. Like the character, the design of these objects aim for simplicity rather than realism.
+The interactive objects were not created using this technique, but rather modelled "free-hand". The lack of planes to built from is seen in Figure \ref{fig:palmtree_mesh}. Like the character, the design of these objects aim for simplicity, rather than realism.
 
 \begin{figure}[h!]
 	\centering
@@ -53,7 +53,7 @@ The interactive objects were not created using this technique, but rather modell
 \end{figure}
 
 \subsection{Textures}
-Each pirate is assigned a \textit{lambert} material with a simple texture applied to it. This type of material uses a model for diffuse reflection. This means that light reflects off this material in all direction, which makes the material look matte. This is useful as the textures are made to look like cartoonish skin and clothes, which means that reflective highlighting is something we does not want. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt colour. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
+Each pirate is assigned a \textit{lambert} material with a simple texture applied to it. This type of material uses a model for diffuse reflection. This means that light reflects off this material in all directions, which makes the material look matte. This is useful as the textures are made to look like cartoonish skin and clothes, which means that reflective highlighting is something to avoid. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen, so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
 
 \begin{figure}[h!]
 	\centering
@@ -92,7 +92,7 @@ The interactive objects have likewise been textured. These objects can be seen i
 \section{Rigging and animation}
 In order to animate the models, they have all been rigged. A skeleton is created and assigned to a model, with joints at the places where the model in question should be able to bend. For example, the pirate model seen in Figure \ref{fig:rigged_pirate} has a skeleton assigned to it, with joints at its shoulders, wrists, knees, et cetera. This is called 'binding the skin' to the skeleton. When skinning, we had to define the skin's \textit{max influence}, which determines how many skeleton joints and objects that can influence any given point on the model. The default value in Maya for this setting is 5, but we lowered it to 3. This is because the models are made to be imported into the game engine Unity \cite{Technologies2016} and it does not support skins with max influences higher than 3.
 
-Once the skeleton is built, each joint's \textit{weight} is painted onto the model. The weight of a joint controls which parts of the body move as the joint is rotated, and how much. Figure \ref{fig:elbow_pirate} shows weights painted in the pirate's left elbow. Furthermore, limits are set for each joint so that they don't bend too far, or bend in the wrong direction. For example, the pirate's knees can only bend on the y-axis, and only towards the rear.
+Once the skeleton is built, each joint's \textit{weight} is painted onto the model. The weight of a joint controls which parts of the body move as the joint is rotated, and how much. Figure \ref{fig:elbow_pirate} shows weights painted in the pirate's left elbow. Furthermore, limits are set for each joint so that they do not bend too far, or bend in the wrong direction. For example, the pirate's knees can only bend on the y-axis, and only towards the rear.
 
 \begin{figure}[h!]
 	\centering
@@ -189,17 +189,19 @@ The smart phone has three primary screens besides the fight screen: the planning
 	\label{fig:wait}
 \end{figure}
 
-All the phone screens except for the combat screen share the same background. The background was chosen to resemble old paper, like a traditional treasure map. This determined the rest of the colour scheme, with the buttons being either white or differing shades of beige. The colour scheme was also chosen to not be too eye-catchy in order not to direct attention to any particular thing, with the exception of the ready button that is much brighter than everything else in order to catch attention. All screens will have the AirConsole logo in the middle of the top of the screen. 
+All the phone screens except for the combat screen share the same background. The background was chosen to resemble old paper, like a traditional treasure map. This determined the rest of the colour scheme, with the buttons being either white or differing shades of beige. The colour scheme was also chosen to not be too eye-catchy in order not to direct attention to any particular thing, with the exception of the ready button that is much brighter than everything else in order to catch attention. All screens  have the AirConsole logo in the middle of the top of the screen during gameplay. 
 
-There are 9 objects on the screen, 8 of which are interactable.
-Going left to right top-down the first object is the button which will take you to the map screen. It is a half circle with a simple illustration of a treasure map inside to indicate that you will find the map screen if this button is pressed. This is not interactable since the map screen is not implemented for this version of the game. Underneath that button is two numbers representing number of map pieces; the left one shows the players current amount of map pieces and the right shows the total map pieces necessary to win.
+There are ten objects on the screen, eight of which are interactable.
+Going left to right, from top to bottom, the first object is the button which will open the map screen. It is a half circle with a simple illustration of a treasure map inside to indicate that the map screen will appear if this button is pressed. It is not interactable since the map screen is not implemented for this version of the game. Underneath that button are two numbers representing the number of map pieces: the left one shows the players current amount of map pieces and the right shows the total map pieces necessary to win.
 
-The next objects are two boxes in the top of the screen which are the planning boxes. They represent the first and second action the player will execute. They are automatically chosen in the order 1-2 but you are able to plan otherwise by first clicking on the number and then clicking on the desired action. When clicking an action the icon will show up in the chosen planning box. They have a transparent background to indicate that they are not buttons. 
+The next objects are the two boxes in the top of the screen which are the planning boxes. They represent the first and second actions the player can execute. They are automatically chosen in the order 1-2, but it is possible to plan otherwise by first clicking on the number and then clicking on the desired action. When clicking an action, the icon will show up in the chosen planning box. The planning boxes have a transparent background to indicate that they are not buttons. 
 
-Onwards there are the movement buttons placed in a two by two grid. Since the arena is in an isometric angle and is seen from the corner, the movement arrows are diagonal and not horizontal and vertical. They have a light beige colour called \textit{cornsilk} in CSS. 
+Right next to them, there is another box of the same shape with a transparent backgroud, that contains the timer. It indicates how much time, in seconds, the player has left to complete the turn. Besides that, a phrase "TIME LEFT" is also put there in order to avoid the player's confusion.
 
-The next object is the interact button. This is illustrated with a magnifying glass, since the interact action is used for searching an object of map pieces. The background colour is different from the movement buttons to distinguish it from them and make it clear that it is a different action. The colour is called \textit{moccasin} in CSS, and was also chosen for not being too eye-catching but still different enough from the others. 
+Onwards, there are the movement buttons placed in a two by two grid. Since the arena is in an isometric angle and is seen from the corner, the movement arrows are diagonal, not horizontal and vertical. They have a light beige colour called \textit{cornsilk} in CSS. 
 
-Finally there is the ready button. This is a green check mark on a pure white background, which makes it the object that stands out the most on the screen. it is also the biggest object on the screen illustrating its importance. a turn will not execute if this button is not pressed. 
+The next object is the interact button. It is illustrated with a magnifying glass, since the interact action is used for searching an object for map pieces. Its background colour is different from that of the the movement buttons to distinguish it from them and make it clear that it is a different action. The colour is called \textit{moccasin} in CSS, and was also chosen for not being too eye-catching, but still different enough from the others. 
 
-The waiting screen has all the same objects as the planning screen. On top of it all is a transparent background with the word "WAITING" taking up most of the screen. This makes the buttons non-interactable, with the exception for the map button, which if it had been implemented would be interactive. The font for the "WAITING" and all the other text is in a font called PiratesBay, which is free to use. This was used to give a piratelike feel.
+Finally there is the ready button. This is a green check mark on a pure white background, which makes it the object that stands out the most on the screen. It is also the biggest object on the screen illustrating its importance. A turn will not execute if this button is not pressed. 
+
+The waiting screen has all the same objects as the planning screen, except for the timer. On top of it all is a transparent background with the word "WAITING" taking up most of the screen. This makes the buttons non-interactable, with the exception for the map button, which, if it had been implemented, would be interactive. The font for the "WAITING" and all the other text is in a font called \textit{PiratesBay}, which is free to use. This was used to give a piratelike feel to the controller.
