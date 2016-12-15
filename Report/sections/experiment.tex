@@ -77,5 +77,21 @@ Once participants were seated, the test conductor explained the test procedure a
 After a group of four participants had tried an iteration of the game, every participant was asked to fill out the questionnaire described in Section \ref{subsec:user_experience_metrics}. While the game was ongoing, the Kinect logged whether players looked at or away from the main screen, and the game logged whose turn it was at any given time. The note taker noted down each player's error rates as described in Section \ref{subsec:performance_metrics}.
 
 \section{Results}
+\subsection{Performance results}
+As mentioned in section \ref{subsec:performance_metrics}, two logs were generated throughout the test: one noting time stamps for different events on the game, and one noting data from the kinect regarding whether players looked at or away from the main screen. By comparing the two, it was possible to measure the amount of time it took for each player to look at their phone after it became their turn, as well as after they were engaged in combat. This reaction time was noted for each of these events, and an average reaction time was calculated for each of the four versions of the game. As can be seen in Figure \ref{fig:reaction_time}, participants switched their visual attention fastest when given tactile stimulus, at an average of 0,78 seconds. Players switched their visual attention slowest when given visual stimulus on the main screen.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1]{figures/reaction_time.png}
+	\caption{Average reaction time for the four versions of the game}\label{fig:reaction_time}
+\end{figure}
+
+It is, however, significant to note that in some cases, test participants failed to look at the phone screen at all during their turn or a combat they were a part of, and in other cases, participants were already looking at their phone by the time it became their turn or they engaged in combat. In these cases, it was impossible to note a reaction time. Instead, Figure \ref{fig:looked} illustrates the rate at which these two circumstances occur, for each of the four versions. As the figure shows, these cases occurred most frequently when players were given no indication of when it was their turn, and least so when they were given visual stimulus on the main screen. 
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1]{figures/graph_looked.png}
+	\caption{The rate at which participants failed to look at their phone screen, or were already looking at it, for each of the four versions}\label{fig:looked}
+\end{figure}
 
 \section{Analysis and Conclusion}
