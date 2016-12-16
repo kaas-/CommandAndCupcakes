@@ -53,7 +53,7 @@ The interactive objects were not created using this technique, but rather modell
 \end{figure}
 
 \subsection{Textures}
-Each pirate is assigned a \textit{lambert} material with a simple texture applied to it. This type of material uses a model for diffuse reflection. This means that light reflects off this material in all directions, which makes the material look matte. This is useful as the textures are made to look like cartoonish skin and clothes, which means that reflective highlighting is something to avoid. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen, so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
+Each pirate is assigned a material with a simple custom shader applied to it, the prototype for which was taken from Wikibooks \cite{LightingTexturedSurfaces}. The shader is subdivided into vertex and fragment shaders. In the former, the diffuse reflection parameter is computed. The latter maps a predefined texture map onto the model and multiplies it with the diffuse reflection parameter, which means that light reflects off the material in all directions which makes the material look matte. This is useful as the textures are made to look like cartoonish skin and clothes, which means that reflective highlighting is something to avoid. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen, so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
 
 \begin{figure}[h!]
 	\centering
@@ -61,7 +61,7 @@ Each pirate is assigned a \textit{lambert} material with a simple texture applie
 	\caption{All four player colours \label{fig:pirate_rainbow}}
 \end{figure}
 
-The texture was applied to the pirates using UV mapping; the geometry is flattened onto a two-dimensional coordinate system. Based on this flattened-out UV-map, an image containing all the necessary colours was created. An example of such a UV map (specifically for the red pirate) is seen in Figure \ref{fig:uv_map}.
+The texture map for the pirates was created with the help of UV mapping \cite{TextureMapping}. First, the geometry of a model was flattened onto a two-dimensional coordinate system. Then, based on this flattened-out model, an image containing all the necessary colours was created. By doing so, it became possible to apply a pair of texture coordinates to every vertex of the model. An example of such a UV map (specifically for the red pirate) is seen in Figure \ref{fig:uv_map}.
 
 \begin{figure}[h!]
 	\centering
@@ -90,7 +90,14 @@ The interactive objects have likewise been textured. These objects can be seen i
 
 \pagebreak
 \section{Rigging and animation}
-In order to animate the models, they have all been rigged. A skeleton is created and assigned to a model, with joints at the places where the model in question should be able to bend. For example, the pirate model seen in Figure \ref{fig:rigged_pirate} has a skeleton assigned to it, with joints at its shoulders, wrists, knees, et cetera. This is called 'binding the skin' to the skeleton. When skinning, we had to define the skin's \textit{max influence}, which determines how many skeleton joints and objects that can influence any given point on the model. The default value in Maya for this setting is 5, but we lowered it to 3. This is because the models are made to be imported into the game engine Unity \cite{Technologies2016} and it does not support skins with max influences higher than 3.
+In order to animate the models, they have all been rigged. A skeleton is created and assigned to a model, with joints at the places where the model in question should be able to bend. For example, the pirate model seen in Figure \ref{fig:rigged_pirate} has a skeleton assigned to it, with joints at its shoulders, wrists, knees, et cetera. This is called 'binding the skin' to the skeleton. The joints are arranged in a hierarchy, shown in Figure \ref{fig:hierarchy}. The hierarchy is arranged such that if the shoulder bends, the rest of the arm will follow, et cetera. When skinning, we had to define the skin's \textit{max influence}, which determines how many skeleton joints and objects that can influence any given point on the model. The default value in Maya for this setting is 5, but we lowered it to 3. This is because the models are made to be imported into the game engine Unity \cite{unity} and it does not support skins with max influences higher than 3.
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[scale=1]{figures/hierarchy.png}
+  \end{center}
+  \caption{The joint hierarchy}\label{fig:hierarchy}
+\end{wrapfigure}
 
 Once the skeleton is built, each joint's \textit{weight} is painted onto the model. The weight of a joint controls which parts of the body move as the joint is rotated, and how much. Figure \ref{fig:elbow_pirate} shows weights painted in the pirate's left elbow. Furthermore, limits are set for each joint so that they do not bend too far, or bend in the wrong direction. For example, the pirate's knees can only bend on the y-axis, and only towards the rear.
 
@@ -112,27 +119,29 @@ Once the skeleton is built, each joint's \textit{weight} is painted onto the mod
 	\label{fig:riggin}
 \end{figure}
 
-With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this projects, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation that will play when they are searched.
+With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this project, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. This method is referred to as \textit{forward kinematics}, where the animator controls each specific joint. This stands in contract to \textit{inverse kinematics}, where the animator sets the position of an element --- a hand, for example --- and calculations are done by the computer to determine the position of the remainder of the arm.
+
+The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation that will play when they are searched.
 
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[scale=0.2]{figures/walk_cycle.png}
+		\includegraphics[scale=0.25]{figures/walk_cycle.png}
 		\caption{Walk cycle}
 		\label{fig:walk_cycle}
 	\end{subfigure}
 	
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[scale=0.2]{figures/attack_anim.png}
+		\includegraphics[scale=0.25]{figures/attack_anim.png}
 		\caption{Attack animation}
 		\label{fig:attack_anim}
 	\end{subfigure}
 	
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[scale=0.2]{figures/search_anim.png}
+		\includegraphics[scale=0.25]{figures/search_anim.png}
 		\caption{Search animation}
 		\label{fig:search_anim}
 	\end{subfigure}
@@ -141,7 +150,7 @@ With the skeleton properly set up, the model can be posed in different positions
 \end{figure}
 
 \section{Interface elements}
-For the purposes of testing, different types of feedback on two screens, several images for visual feedback have been created. The images signalling that it is now a certain player's turn consist mainly of that player's colour, as seen in Figure \ref{fig:yellow_turn}, in which the yellow player's signal is shown. The intent is that the player's attention is quickly drawn to the image, and that it is quickly communicated that it is a given player's turn.
+For the purposes of testing, several images for visual feedback have been created for different types of feedback on two screens. The images signalling that it is now a certain player's turn consist mainly of that player's colour, as seen in Figure \ref{fig:yellow_turn}, in which the yellow player's signal is shown. The intent is that the player's attention is quickly drawn to the image and that it is quickly communicated that it is a given player's turn.
 
 \begin{figure}[h!]
 	\centering
@@ -150,7 +159,7 @@ For the purposes of testing, different types of feedback on two screens, several
 	\label{fig:yellow_turn}
 \end{figure}
 
-When a fight is about to commence, another image, seen in Figure \ref{fig:get_ready}, shows up. It is black, with highly contrasting colours, in order to quickly catch the players' visual attention without being biased in any player's direction.
+When a fight is about to commence, the image seen in Figure \ref{fig:get_ready} shows up. It is black with highly contrasting colours in order to quickly catch the players' visual attention without being biased in any player's direction.
 
 \begin{figure}[h!]
 	\centering
@@ -159,17 +168,30 @@ When a fight is about to commence, another image, seen in Figure \ref{fig:get_re
 	\label{fig:get_ready}
 \end{figure}
 
-The actual fighting screen, which appears during a fight sequence between two players, is unsaturated. Ideally by this point, the player's attention is already aimed at the phone screen, either nudged by the tactile feedback or the "Get ready to FIGHT!" image, depending on the test. The three combat buttons are of a bright orange colour to make them stand out from the background image and therefore immediately grasp the player's attention towards them. The fighting screen can be seen in Figure \ref{fig:fight}. The player needs to press the buttons in the correct order and faster than the opponent to win the combat. 
+The actual fighting screen, which appears during a fight sequence between two players, is unsaturated. Ideally by this point, the player's attention is already aimed at the phone screen, either nudged by the tactile feedback or the "Get ready to FIGHT!" image depending on the test. The three combat buttons are of a bright orange colour to make them stand out from the background image and therefore immediately grasp the player's attention towards them. The fighting screen can be seen in Figure \ref{fig:fight}. The player needs to press the buttons in the correct order and faster than the opponent to win the combat. 
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/fight.png}
 	\caption{The fight screen}
 	\label{fig:fight}
-\end{figure}\todo{replace the FIGHT! image later later}
-After the combat results are clear, the fight screen changes to either a winning or a loosing screen depending on the outcome. The winning screen can be seen in Figure , and the loosing screen can be seen in Figure .
-\todo{add the winning and loosing screen images}
-\todo{Add some stuff about the general interface}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/WonPhone}
+	\caption{Winning screen for yellow player}
+	\label{fig:winning}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/LostPhone}
+	\caption{Losing screen for green player}
+	\label{fig:losing}
+\end{figure}
+
+After the combat results are clear, the fight screen changes to either a winning or a loosing screen depending on the outcome. The winning screen can be seen in Figure\ref{fig:winning}, and the loosing screen can be seen in Figure\ref{fig:losing}.
 
 \section{Phone interface}
 The smart phone has three primary screens besides the fight screen: the planning screen, the waiting screen and the map screen. Only two out of the three were complete at the end of this project, the planning as seen on Figure \ref{fig:plan}, and the waiting screen a seen on Figure \ref{fig:wait}. 
