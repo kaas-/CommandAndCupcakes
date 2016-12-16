@@ -1,8 +1,7 @@
 \chapter{Code Description}\label{ch:codeDescription}
-\section{Controller Code}\label{controllerCode}
-The controller for the AirConsole is coded in HTML, CSS and JavaScript. This code is loaded unto the smartphone when connected to the game and runs there. The following subsections describe the code implemented to make the controller work.
+The developed game runs on a server which manages the game states and player turns, and handles different game events. During a game, four smartphones are connected to the server, functioning as controllers for the players. The server runs the Unity engine, while the controllers run a HTML website with JavaScript code.
 
-\subsection{HTML}\label{controllerHTML}
+\section{Layout and styling}\label{sec:codeLayoutStyling}
 
 \begin{figure}[h!]
 	\centering
@@ -11,7 +10,7 @@ The controller for the AirConsole is coded in HTML, CSS and JavaScript. This cod
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}
+\begin{lstlisting}[language=HTML5]
 <!--COMBAT SCREEN-->
 <div id="combat_splash" class="view"> READY STEADY GO </div>
 <div id="combat" class="view">
@@ -29,7 +28,14 @@ The controller for the AirConsole is coded in HTML, CSS and JavaScript. This cod
 \caption{Code snippet structuring the Combat Screen \label{HTMLex}}
 \end{figure}
 
-The controller HTML defines three areas, which can be switched between to be shown on the smartphone. These three areas are the Planning Screen, the Waiting Screen and the Combat Screen. These areas are defines with \texttt{<div>} tags that receive classes and unique IDs to be used by the CSS and JavaScript code. This allows us to show the current Screen at the current time in a player's turn.
+The controller relies on the AirConsole "ViewManager" library, which is capable of displaying and hiding the contents of HTML \texttt{div}-tags, that have been assigned the "view" class. In this project, three different views have been defined:
+\begin{itemize}
+	\item Planning Screen
+	\item Waiting Screen
+	\item Combat Screen
+\end{itemize}
+
+The controller switches between these different views depending on the game state.
 
 Figure \ref{fig:controllerBoxModel} illustrates a box model of how the Planning Screen is set up. Each \texttt{<div>} tag defines an area within the Planning Screen, which can be nested within other \texttt{<div>} tags. This makes a layered structure, where formatting of one tag affects everything inside it too.
 
@@ -39,54 +45,52 @@ The Waiting Screen is structured identically to the Planning one, with a couple 
 
 The Combat Screen consists of four areas, where three of them define areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press. The code for this part of the structure is shown in Figure \ref{HTMLex}.
 \todo{update Planning screen image, show the timer}
-\todo{maybe change the image with divs to a one with actual controller set as background to illustrate how divs work}
-\subsection{Javascript}\label{controllerJavascript}
 
+The webpage is styled using an external CSS stylesheet. This stylesheet was used to define different button areas their colours, the size of the different objects, the font and its size, load the images and define the hierarchy of the different objects. CSS can be used to style by tag, class, or ID. Tag styles are applied to all HTML tags of the specified type. Class styles are applied to the all objects that have been assigned to the specified class. Finally, ID styles are applied to the one object, that has been assigned the specified ID. Examples of ID and class styles used in this project can be seen in in Figure \ref{fig:IDex} and \ref{fig:Classex}. 
 
-\subsection{CSS}\label{controllerCSS}
-When writing code for browsers, CSS is the part that determines how the web page actually looks.
-
-For this project a external style sheet was implemented which creates a .css file. This allows the style-sheet to be edited independently of the .html-file. The external style-sheet was used to determine the different button areas, their colours, the size of the different objects, the font and its size, load the images and determine the hierarchy of the different objects. 
-
-As mentioned in a previous section, the <div> elements are assigned classes and/or IDs. These work by calling them in the CSS code and the assigning attributes directly to them as seen in the examples in Figure \ref{IDex} and \ref{Classex}. 
 \begin{figure}
-\begin{lstlisting}
+\begin{lstlisting}[language=CSS]
 #waiting_image{
-	position		: fixed;
-	border			: 1px solid opacity(0.5);
-	background-color	: rgba(255, 255, 255, 0.5);
-	height			: 100%;
-	width			: 100%;
-	font-size		: 20vmax;
-	font-family		: pirate;
-	z-index			: 1;
-	line-height		: 250%;
-	text-align		: center;
+	position            : fixed;
+	border              : 1px solid opacity(0.5);
+	background-color    : rgba(255, 255, 255, 0.5);
+	height              : 100%;
+	width               : 100%;
+	font-size           : 20vmax;
+	font-family         : pirate;
+	z-index             : 1;
+	line-height         : 250%;
+	text-align          : center;
 }
 \end{lstlisting} 
-\caption{An example of the attributes of an ID \label{IDex}}
+\caption{An example of the attributes of an ID \label{fig:IDex}}
 \end{figure}
 
 \begin{figure}
-\begin{lstlisting}
+\begin{lstlisting}[language=CSS]
 .map_text{
-		font-family		: pirate;
-		font-size		: 4vmax;
-		position		: absolute;
-		top			: 12vmax;
+	font-family     : pirate;
+	font-size       : 4vmax;
+	position        : absolute;
+	top	            : 12vmax;
 }
 \end{lstlisting} 
-\caption{An example of the attributes of a class \label{Classex}}
+\caption{An example of the attributes of a class \label{fig:Classex}}
 \end{figure}
 
-\subsection{Javascript}
-In the current setup of the game, only when four players participate can the game start. Each controller then goes to a waiting state which can be interrupted if there was received a message indicating that:
+\section{Programming}\label{sec:codeProgramming}
+
+\subsection{Controller}
+As mentioned in Section \ref{sec:codeLayoutStyling} the controllers use the AirConsole ViewManager library to switch between different views. Each view corresponds one of three states:
 \begin{itemize}
-\item it is the current player's turn or
-\item a combat has started.
+	\item Waiting for turn/combat event
+	\item Planning turn actions
+	\item Combat
 \end{itemize}
 
-The controller then goes to either a planning or a fighting state respectively. During the former, a player has the opportunity to choose two actions within a period of 11 seconds, which are then sent to the Game manager. If a player fails to do so within a specified deadline, only those actions that were chosen are sent back to the Game manager, even if one or zero actions have been selected. This is illustrated in Figure \ref{fig:stateMachine}.
+By default, the controller starts in the waiting state. When it receives a message from the server, it will either switch to the planning or combat state, depending on the nature of the message. When the phone is in the planning state, a player has the opportunity to choose two actions within a period of 11 seconds, which are then sent to the server. If a player fails to do so within a specified time limit, only those actions that the player has currently selected are sent back to the server, even if just one or zero actions have been selected.
+
+If the controller goes to the combat state, a splash screen informing the player of the upcoming battle is shown. After a few seconds, a splash screen changes to the combat view with with buttons randomly positioned within the screen boundaries. These buttons are labelled '1' through '3' which is the order the player needs to press the buttons in. When a button is pressed it is made invisible after which the program checks whether the correct button was pressed. If all three buttons were pressed in the correct order, an "attack\_response\_success" message is sent to the server. If a button was pressed in the wrong order, an "attack\_response\_loss" message is sent. Depending on the combat outcome, a winning or losing splash screen is on the controller for a few seconds. 
 
 \begin{figure}
 	\centering
@@ -94,11 +98,11 @@ The controller then goes to either a planning or a fighting state respectively. 
 	\caption{State-machine diagram of the controller. \label{fig:stateMachine}}
 \end{figure}
 
-If a controller goes to a fighting state, a splash screen informing the player of the upcoming battle is shown, instead of the button layout. After a few seconds, a splash screen changes to a new one with different background and buttons randomly positioned within the screen boundaries. The buttons are made invisible after they are pressed. The program keeps track of the order in which the buttons are being pressed and sends out a corresponding message to the Game manager. Depending on the combat outcome, a winning or losing splash screen is shown to a player for a few seconds. 
+Both the planning state and combat state return to the waiting state when they have concluded.  This is illustrated in Figure \ref{fig:stateMachine}.
 
-It is also worth mentioning that the controller code keeps the record of all the map pieces obtained during gameplay. The map pieces are stored in a string containing nine characters, since there is a total of nine map pieces on the "island". A '0' character indicates a missing map piece, while '1' - an obtained map piece. Therefore, at the start of the game, the string is equal to "000000000", which means that a player has zero map pieces. If a player obtains a map piece number five, for example, then the string changes to "000010000". This kind of system is used mainly to prevent obtaining twice the same map piece through combat. For instance, if a player has map pieces number two and six and wins a combat against a player who has only map piece number two, then the winner cannot increase the total number of map pieces to win the game, since only after nine different map pieces are obtained by one player can the victory be achieved. When this condition is fulfilled, meaning that nine out of nine map pieces are collected by a single player, a controller sends a message to the Game manager indicating the overall victory, after which the game is completed. 
+It is also worth mentioning that the controller code keeps the record of all the map pieces obtained during gameplay. The map pieces are stored in a string containing nine characters, since there is a total of nine map pieces on the "island". A '0' character indicates a missing map piece, while '1' indicates an obtained map piece. Therefore, at the start of the game, the string is equal to "000000000", which means that a player has zero map pieces. If a player obtains a map piece number five, for example, then the string changes to "000010000". This system is used to prevent players from obtaining the same map piece twice through combat. For instance, if a player has map pieces number two and six and wins a combat against a player who has only map piece number two, then the winner cannot increase the total number of map pieces to win the game. When a player has obtained nine different map pieces the controller sends a message to the server indicating the overall victory, after which the game is completed. 
 
-\section{Unity code}
+\subsection{Unity}
 The game was designed in Unity using AirConsole Unity plugin \cite{AirconsoleUnity}. In general, the code is subdivided into three different modules: 
 \begin{itemize}
 	\item game manager code, which handles all of the communication from the server side and is responsible for all of the logic of the game (placing map pieces, assigning random turn order, etc.).
@@ -110,10 +114,11 @@ The game was designed in Unity using AirConsole Unity plugin \cite{AirconsoleUni
 In the following subsections, the three modules are described in greater detail.
 
 \subsection{GameManager}
-The GameManager is a god object that handles the game’s states, sets up the game arena, and facilitates communication between the game, the AirConsole controllers, and the on-screen player characters. Furthermore, it manages player turns and randomises the player turn order after each round. The GameManager class extends the Unity engine’s \texttt{MonoBehavior} class which means that it is subscribed to certain callbacks from the Unity engine such as Start() which is used for initialization, and Update() which is called every frame. Furthermore, since it instantiates AirConsole, it receives callbacks for events such as devices connecting to and disconnecting from the game, and messages sent from devices to the game. 
+The GameManager is a god object that handles the game’s states, sets up the game arena, and facilitates communication between the game,  controllers, and the on-screen player characters. Furthermore, it manages player turns and randomises the player turn order after each round. The GameManager class extends the Unity engine’s \texttt{MonoBehavior} class which means that it is subscribed to certain callbacks from the Unity engine such as Start() which is used for initialization, and Update() which is called every frame. Furthermore, since it instantiates AirConsole, it receives callbacks for events such as devices connecting to and disconnecting from the game, and messages sent from devices to the game. 
 
 \subsubsection{Play area}
-Before the program starts executing, the plane, where all the objects are placed, needs to be set at the right position. Specifically, its topmost corner should be at the origin of the global coordinates, as can be seen in the Figure \ref{fig:playArea}. This is done in order to ease the calculation of the objects positions on the plane, since in that way neither of them can be positioned at the negative x or z axes.
+
+Before the program starts executing, the plane where all the objects are placed, needs to be set at the right position. Specifically, its topmost corner should be at the origin of the global coordinates, as can be seen in the Figure \ref{fig:playArea}. This is done in order to ease the calculation of the objects positions on the plane, since in that way neither of them can be positioned at the negative x or z axes.
 
 \begin{figure}
 	\centering
@@ -146,7 +151,7 @@ The structure of a combat event is described in Figure \ref{fig:seqDiag3}. A mes
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\textwidth]{figures/seq_diag_2.png}
+	\includegraphics[width=1\textwidth]{figures/seq_diag_3.png}
 	\caption{Combat event. \label{fig:seqDiag3}}
 \end{figure}
 
