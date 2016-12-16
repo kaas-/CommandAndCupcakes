@@ -23,6 +23,17 @@
 % Macros for the titlepage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Creates the aau titlepage
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{figures/frontp.png}%
+\vfill
+}}}
+
+
 \newcommand{\aautitlepage}[3]{%
   {
     %set up various length
