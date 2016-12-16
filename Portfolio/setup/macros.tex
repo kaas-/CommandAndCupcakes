@@ -19,6 +19,16 @@
 % see, e.g., http://en.wikibooks.org/wiki/LaTeX/Customizing_LaTeX#New_commands
 % for more information on how to create macros
 
+\newcommand\BackgroundPic{%
+\put(0,0){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight,%
+keepaspectratio]{figures/frontp.png}%
+\vfill
+}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Macros for the titlepage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
