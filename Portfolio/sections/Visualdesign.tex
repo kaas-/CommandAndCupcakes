@@ -90,7 +90,14 @@ The interactive objects have likewise been textured. These objects can be seen i
 
 \pagebreak
 \section{Rigging and animation}
-In order to animate the models, they have all been rigged. A skeleton is created and assigned to a model, with joints at the places where the model in question should be able to bend. For example, the pirate model seen in Figure \ref{fig:rigged_pirate} has a skeleton assigned to it, with joints at its shoulders, wrists, knees, et cetera. This is called 'binding the skin' to the skeleton. When skinning, we had to define the skin's \textit{max influence}, which determines how many skeleton joints and objects that can influence any given point on the model. The default value in Maya for this setting is 5, but we lowered it to 3. This is because the models are made to be imported into the game engine Unity \cite{Technologies2016} and it does not support skins with max influences higher than 3.
+In order to animate the models, they have all been rigged. A skeleton is created and assigned to a model, with joints at the places where the model in question should be able to bend. For example, the pirate model seen in Figure \ref{fig:rigged_pirate} has a skeleton assigned to it, with joints at its shoulders, wrists, knees, et cetera. This is called 'binding the skin' to the skeleton. The joints are arranged in a hierarchy, shown in Figure \ref{fig:hierarchy}. The hierarchy is arranged such that if the shoulder bends, the rest of the arm will follow, et cetera. When skinning, we had to define the skin's \textit{max influence}, which determines how many skeleton joints and objects that can influence any given point on the model. The default value in Maya for this setting is 5, but we lowered it to 3. This is because the models are made to be imported into the game engine Unity \cite{unity} and it does not support skins with max influences higher than 3.
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+    \includegraphics[scale=1]{figures/hierarchy.png}
+  \end{center}
+  \caption{The joint hierarchy}\label{fig:hierarchy}
+\end{wrapfigure}
 
 Once the skeleton is built, each joint's \textit{weight} is painted onto the model. The weight of a joint controls which parts of the body move as the joint is rotated, and how much. Figure \ref{fig:elbow_pirate} shows weights painted in the pirate's left elbow. Furthermore, limits are set for each joint so that they do not bend too far, or bend in the wrong direction. For example, the pirate's knees can only bend on the y-axis, and only towards the rear.
 
@@ -112,27 +119,29 @@ Once the skeleton is built, each joint's \textit{weight} is painted onto the mod
 	\label{fig:riggin}
 \end{figure}
 
-With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this projects, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation that will play when they are searched.
+With the skeleton properly set up, the model can be posed in different positions, allowing for animation using key frames. Key frames mark the start and end points of a smooth transition between two poses. For this project, the models are posed in Autodesk Maya, which automatically generates a smooth transition once the key frames have been set. When setting the key frames, the model is posed using the rigged joints. This method is referred to as \textit{forward kinematics}, where the animator controls each specific joint. This stands in contract to \textit{inverse kinematics}, where the animator sets the position of an element --- a hand, for example --- and calculations are done by the computer to determine the position of the remainder of the arm.
+
+The pirate model has three animations with 4-6 key frames, all of which can be seen in Figure \ref{fig:key_frames}. Likewise, the interactive objects each have an animation that will play when they are searched.
 
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[scale=0.2]{figures/walk_cycle.png}
+		\includegraphics[scale=0.25]{figures/walk_cycle.png}
 		\caption{Walk cycle}
 		\label{fig:walk_cycle}
 	\end{subfigure}
 	
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[scale=0.2]{figures/attack_anim.png}
+		\includegraphics[scale=0.25]{figures/attack_anim.png}
 		\caption{Attack animation}
 		\label{fig:attack_anim}
 	\end{subfigure}
 	
 	\begin{subfigure}[b]{\textwidth}
 		\centering
-		\includegraphics[scale=0.2]{figures/search_anim.png}
+		\includegraphics[scale=0.25]{figures/search_anim.png}
 		\caption{Search animation}
 		\label{fig:search_anim}
 	\end{subfigure}
