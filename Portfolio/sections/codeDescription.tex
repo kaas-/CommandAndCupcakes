@@ -120,7 +120,7 @@ The game currently requires that players obtain nine unique map pieces to win. T
 	\caption{The play area. Tiles with map pieces have been highlighted for the sake of this figure.\label{fig:playArea}}
 \end{figure}
 
-\subsubsection{Player turns}\label{•}
+\subsubsection{Player turns}\label{sec:playerTurns}
 The turn of a player is structured according to Figure \ref{fig:seqDiagram1} which describes the communication between the GameManager, a given playerObject, and a given AirConsole Controller. Each turn starts with the \texttt{GameManager} sending a message to a controller that it is their turn, and ends when the \texttt{GameManager} calls the \texttt{NextTurn} method. 
 
 \begin{figure}
