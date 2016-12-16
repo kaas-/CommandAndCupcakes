@@ -6,9 +6,9 @@ The game is a turn-based treasure hunting game for four players. Each player con
 It was decided to create a multiplayer game because AirConsole lends itself to this type of game, as players can easily use their own phone as an individual controller. The game is designed in a way so that players will have too look at the main screen in certain situations, and on their phone screen in others. This decision was made so that the game works as a testing tool to investigate how to direct players' attention between two screens. Furthermore, the game is turn-based, rather than real-time, as the AirConsole format has an inherent latency issue. Making the game turn-based reduces the consequences of a delay between player input and game reaction time. 
 
 \section{Gameplay}
-Each player has a turn in a random order --- once all players have had their turn, this order is scrambled. On a player's turn, they must plan two actions, which will be executed. They have 10 seconds to do this \todo{what happens if the timer runs out?}. The possible actions are: Moving in a direction and interacting with an object. The actions are planned by clicking on the corresponding button in the order you would like them to execute in. There is a movement option for each of the four directions. The interact action makes the players pirate interact with an object on the tile it is on. This is one way to find map pieces. 
+Each player has a turn in a random order --- once all players have had their turn, this order is scrambled. On a player's turn, they must plan two actions, which will be executed. They have 10 seconds to do this, if the time runes out they will execute the actions plans so far, so if only one action have been planned they will only execute that one. The possible actions are: Moving in a direction and interacting with an object. The actions are planned by clicking on the corresponding button in the order you would like them to execute in. There is a movement option for each of the four directions. The interact action makes the players pirate interact with an object on the tile it is on. This is one way to find map pieces. 
 
-If a player actively moves onto a tile another player already occupies then an attack will be initiated. A minigame will start on the two players smartphone. Which player won the fight is shown the fighting players' smartphones with a "YOU WON" or YOU LOST" text message displayed on screen. Whoever wins the fight will then copy a map piece from the loser, if the loser is in possession of a map piece that the winner does not already has. If the winner has all the map pieces that the loser also has, then no new map pieces are gained. This was implemented to avoid players from copying the same map pieces over and over in order to win, and also requiring all map pieces to be found from the objects by someone.
+If a player actively moves onto a tile another player already occupies then an attack will be initiated. A minigame will start on the two players smartphone. The player who won the fight is show a "YOU WON" message on their smartphone, while the player who lost is shown a "YOU LOST" message. Whoever wins the fight will then copy a map piece from the loser, if the loser is in possession of a map piece that the winner does not already has. If the winner has all the map pieces that the loser also has, then no new map pieces are gained. This was implemented to avoid players from copying the same map pieces over and over in order to win, and also requiring all map pieces to be found from the objects by someone.
 
 The random turn-order was decided upon based on the problem statement regarding directing attention. This would be a way to test different ways to direct the players attention without them growing accustomed to the turn-order. The time limit is to increase the pace of the game. However, if a player is last in a turn order, then they cannot become first player. This was included so that a player could not effectively get two turns in a row.
 
@@ -27,7 +27,7 @@ The island's shape is to fit the cartoon-ish style and the grid pattern. The sco
 
 \begin{figure}
 	\centering
-	\missingfigure{Main screen goes here}
+	\includegraphics[width = 0.5\textwidth]{figures/MainScreen}
 	\caption{The main screen}\label{fig:main_screen}
 \end{figure}
 
@@ -35,7 +35,7 @@ The smartphone screens display the colour of the player, the amount of map piece
 
 \begin{figure}
 	\centering
-	\missingfigure{Phone screen goes here}
+	\includegraphics[width =0.5\textwidth]{figures/PhoneScreen}
 	\caption{The phone screen}\label{fig:phone_screen}
 \end{figure}
 
