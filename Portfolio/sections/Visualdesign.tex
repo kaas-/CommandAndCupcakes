@@ -53,16 +53,15 @@ The interactive objects were not created using this technique, but rather modell
 \end{figure}
 
 \subsection{Textures}
-\todo{reference information about shaders, specifically wikibooks}
-Each pirate is assigned a material with a simple custom shader applied to it. The shader is subdivided into vertex and fragment shaders. In the former, the diffuse reflection parameter is computed. The latter maps a predefined texture map onto the model and multiplies it with the diffuse reflection parameter, which means that light reflects off the material in all directions which makes the material look matte. This is useful as the textures are made to look like cartoonish skin and clothes, which means that reflective highlighting is something to avoid. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen, so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
+Each pirate is assigned a material with a simple custom shader applied to it, the prototype for which was taken from Wikibooks \cite{LightingTexturedSurfaces}. The shader is subdivided into vertex and fragment shaders. In the former, the diffuse reflection parameter is computed. The latter maps a predefined texture map onto the model and multiplies it with the diffuse reflection parameter, which means that light reflects off the material in all directions which makes the material look matte. This is useful as the textures are made to look like cartoonish skin and clothes, which means that reflective highlighting is something to avoid. The textures are very similar (simple face, light skin, neutrally coloured shorts), but they differ in the colour of each pirate's bandana and shirt. The colours of the four characters are red, green, yellow, and blue, as pictured in Figure \ref{fig:pirate_rainbow}. The green colour specifically is chosen, so that it is not too similar to the yellow colour --- the two were reviewed internally by a colour deficient person, who often has trouble discerning between light green and yellow colours. This person was able to easily discern between the yellow and green pirates.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=\textwidth]{figures/pirate_rainbow.png}
 	\caption{All four player colours \label{fig:pirate_rainbow}}
 \end{figure}
-\todo{reference information about UV mapping}
-The texture map for the pirates was created with the help of UV mapping. First, the geometry of a model was flattened onto a two-dimensional coordinate system. Then, based on this flattened-out model, an image containing all the necessary colours was created, thus allowing to apply a pair of texture coordinates to every vertex of the model. An example of such a UV map (specifically for the red pirate) is seen in Figure \ref{fig:uv_map}.
+
+The texture map for the pirates was created with the help of UV mapping \cite{TextureMapping}. First, the geometry of a model was flattened onto a two-dimensional coordinate system. Then, based on this flattened-out model, an image containing all the necessary colours was created. By doing so, it became possible to apply a pair of texture coordinates to every vertex of the model. An example of such a UV map (specifically for the red pirate) is seen in Figure \ref{fig:uv_map}.
 
 \begin{figure}[h!]
 	\centering
