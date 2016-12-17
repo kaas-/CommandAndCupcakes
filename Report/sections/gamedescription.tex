@@ -1,29 +1,25 @@
-\chapter{Treasure Hunt: a Dual-Screen Testing Tool}\label{ch:game}
-\todo{It's just a working title, do not panic} As the focus of this paper lies on directing attention between two screens, a game has been developed for purpose of testing the problem formulation. The game is an AirConsole game, which means that players will need to direct their attention at the main screen in certain situations, and at their phone screen in others. Therefore, the game serves as a tool to test the best way to direct a player's attention towards a certain screen.
+\chapter{Treasure Hunt: a dual-screen testing tool}\label{ch:game}
+As the focus of this project lies on directing attention between two screens, a game has been developed for the purpose of testing the problem formulation. The game is an AirConsole game, which means that players will need to direct their attention at the main screen in certain situations, and at their phone screen in others. Therefore, the game serves as a tool to test the best way to direct a player's attention towards a certain screen.
 
-The game is a turn-based treasure hunting game for four players. Each player controls a pirate character which they use to walk around on a treasure island, to look for map pieces or steal them from the other players. When a player has found all nine map pieces, they win the game.
+The game is a turn-based treasure hunting game for four players. Each player controls a pirate character which they use to walk around on a treasure island to look for map pieces and copy them from the other players. When a player has found all nine map pieces, they win the game.
 
-It was decided to create a multiplayer game because AirConsole lends itself to this type of game, as players can easily use their own phone as an individual controller. The game is designed in a way so that players will have too look at the main screen in certain situations, and on their phone screen in others. This decision was made so that the game works as a testing tool to investigate how to direct players' attention between two screens. Furthermore, the game is turn-based, rather than real-time, as the AirConsole format has an inherent latency issue. Making the game turn-based reduces the consequences of a delay between player input and game reaction time. 
+The game is designed in a way so that players will have too look at the main screen in certain situations, and on their phone screen in others. This decision was made so that the game works as a testing tool to investigate how to direct players' attention between two screens. Furthermore, the game is turn-based, rather than real-time, as the AirConsole format has an inherent latency issue. Making the game turn-based reduces the consequences of a delay between player input and game reaction time.
 
 \section{Gameplay}
-Each player has a turn in a random order --- once all players have had their turn, this order is scrambled. On a player's turn, they must plan two actions, which will be executed. They have 10 seconds to do this, if the time runes out they will execute the actions plans so far, so if only one action have been planned they will only execute that one. The possible actions are: Moving in a direction and interacting with an object. The actions are planned by clicking on the corresponding button in the order you would like them to execute in. There is a movement option for each of the four directions. The interact action makes the players pirate interact with an object on the tile it is on. This is one way to find map pieces. 
+Each player has a turn in a random order---once all players have had their turn, this order is scrambled. On a player's turn, they must plan two actions within a limited time frame, which will be executed in the player specified order. If the time runs out, the actions they have planned so far will be executed, so if only one action has been planned only that one will be executed. There are two possible actions: moving in one of four directions and interacting with an object. The actions are planned by tapping on the corresponding button in the order the player would like them to execute in. The \textit{interact} action makes the player's pirate searches the object at their current position. This is one way to find map pieces. 
 
-If a player actively moves onto a tile another player already occupies then an attack will be initiated. A minigame will start on the two players smartphone. The player who won the fight is show a "YOU WON" message on their smartphone, while the player who lost is shown a "YOU LOST" message. Whoever wins the fight will then copy a map piece from the loser, if the loser is in possession of a map piece that the winner does not already has. If the winner has all the map pieces that the loser also has, then no new map pieces are gained. This was implemented to avoid players from copying the same map pieces over and over in order to win, and also requiring all map pieces to be found from the objects by someone.
+If a player ends their turn on a tile which another player already occupies then combat will be initiated between the two. A minigame will start on the two players' smartphones. The player who wins the fight is shown a "YOU WON" message on their smartphone, while the player who loses is shown a "YOU LOST" message. Whoever wins the fight will then copy a map piece from the loser if the loser is in possession of a map piece that the winner does not already have. If the loser is not in possession of any map pieces that the winner is currently missing, then no new map piece is gained. This was implemented to avoid players from copying the same map pieces over and over in order to win, and also requiring all map pieces to be found from the objects by someone.
 
-The random turn-order was decided upon based on the problem statement regarding directing attention. This would be a way to test different ways to direct the players attention without them growing accustomed to the turn-order. The time limit is to increase the pace of the game. However, if a player is last in a turn order, then they cannot become first player. This was included so that a player could not effectively get two turns in a row.
+The random turn-order was decided upon based on the problem statement regarding directing attention. This would be a way to test different ways to direct the players attention without them growing accustomed to the turn-order. The time limit is to increase the pace of the game. However, if a player is last in a turn order, then they cannot become the first player. This was included so that a player could not effectively get two turns in a row.
 
-The way the movement and actions work was decided due to the platform having issues with latency on some networks and also the lack of the tactile feedback buttons on a screen provide. This means that moving in a real-time system is less accurate, so a turn-based structure is used instead.
-
-The attack action works like described based again on testing the problem statement. The way it works forces the players to redirect attention when it is not necessarily their turn. The minigame was implemented so as not to make the winning side be the one who initiated the attack or chosen at random.
+The reason the combat minigame was implemented is to force the players to redirect attention when it is not necessarily their turn.
 
 \section{Interfaces}
-The game has two different type of screens. A shared main screen and a personal smartphone screen for each player. This is a feature of the AirConsole platform.
+The game has two different types of screens: a shared main screen and a personal smartphone screen for each player. This is a feature of the AirConsole platform.
 
-On the main screen is the game arena which is a tropical island. This island has a visible grid pattern on it to indicate to the players where they can walk and where the boundaries of the arena are. Interactable objects such as palm trees, ferns and skulls are placed inside of the corners of these grids and they can be interacted with if a player character is on the same grid space. The island is square and it is viewed from an isometric perspective. 
+On the main screen is the game arena which is a tropical island. This island has a visible grid pattern on it to indicate to the players where they can walk and where the boundaries of the arena are. Interactable objects such as palm trees, ferns and skulls are placed inside of the corners of these grids and they can be interacted with if a player character is on the same tile. The island is square and it is viewed from an isometric perspective. 
 
-The grid based arena was chosen to make it easier for the player to navigate the map. The placement of the objects are also placed where the players find it most intuitive to be able to interact with them when on the same tile, according to the paper test. Therefore, skulls and ferns populate the middle and lower border of the island, as these do not cover much area of the screen. The palm trees cover a lot more of the screen, and are placed around the upper border, so they do not cover any of the other tiles.
-
-The island's shape is to fit the cartoon-ish style and the grid pattern. The scoreboard it there for strategic purposes, so that the players can keep track on how far the other player are, and how close they are to being able to find the treasure. 
+The grid based arena was chosen to make it easier for the players to navigate the map. The objects are also placed where the players find it most intuitive to be able to interact with them when on the same tile. Therefore, skulls and ferns populate the middle and lower border of the island, as these do not cover much area of the screen. The palm trees cover a lot more of the screen, and are placed around the upper border, so they do not cover any of the other tiles. The game has a cartoonish style with high colour saturation in order to draw the players' attention. This was done so that players' will be easily find their own character and plan their  turn.
 
 \begin{figure}
 	\centering
@@ -31,42 +27,36 @@ The island's shape is to fit the cartoon-ish style and the grid pattern. The sco
 	\caption{The main screen}\label{fig:main_screen}
 \end{figure}
 
-The smartphone screens display the colour of the player, the amount of map pieces the player has, the slot for the planned actions, five action buttons you can tab during your turn to plan the turn, and the button to execute your turn. This is shown in Figure \ref{fig:phone_screen}.
+The smartphone screen displays the colour of the player, the amount of map pieces the player has, the slots for the planned actions, five action buttons the player can tap during their turn, and the button to execute their turn. This is shown in Figure \ref{fig:phone_screen}.
 
 \begin{figure}
 	\centering
 	\includegraphics[width =0.5\textwidth]{figures/PhoneScreen}
-	\caption{The phone screen}\label{fig:phone_screen}
+	\caption{The phone screen of the yellow player during their turn}\label{fig:phone_screen}
 \end{figure}
 
-The movement buttons are arranged in a two-by-two pattern, with the interact button placed outside of them to the right. Two empty spaces at the top is where the planned actions are shown. The button with a check mark is at the right side and is the button that needs to be tapped to implement the actions the player planned. The last thing on the smartphone screen is an icon with a little grid-map on it and a number underneath it. The left number is the number of map pieces the player is in possession of and the right number is the number of pieces needed. 
+The movement buttons are arranged in a two-by-two pattern, and the interact button is placed beside them to the right. Two slots are displayed at the top of the screen. This is where any planned actions will appear. The button with a check mark, seen on the right side of the screen, can be tapped to execute the planned actions. On the top-left of the smartphone screen is an icon with a little grid-map on it and a number underneath it. The leftmost number is the number of map pieces the player is in possession of, and the rightmost number is the number of pieces needed. Lastly in the top-right corner, a timer is placed which displays the remaining time of that player's turn. The interface is designed in such a way that the phone screen does not become cluttered with features and all of the elements are simple in design and easily recognisable.
 
-When designing the smartphone interface it was incredibly important that it did not become overcrowded with buttons and other features. Initially the treasure map was an actual map and shown next to the controls. However, this was revised since if a player is using a small smartphone, then the button would not be very large to make room for the map. This in turn would lead to difficulties tapping the correct button. Since the map pieces was not necessary for the experiment of attention, their aesthetic representation was ultimately scrapped and abstracted with a simple icon and number.
-
-\section{Attention-Directing Cues}
-Four versions are made of this game. Three of them implement different methods to direct attention, while the fourth one has no attention-directing cues. 
-
-These four versions are described in further detail in Sections \ref{sub:no_feedback}, \ref{sub:tactile_feedback}, \ref{sub:visual_main}, and \ref{sub:visual_smartphone}. The implemented versions are:
+\section{Attention-directing stimuli}
+Four versions were made of this game. Three of them utilise different methods to direct attention, while the fourth one has no attention-directing stimuli. The stimuli are given to individual players when their turn starts and when combat in which they participate begins. The implemented versions are:
 
 \begin{enumerate}[label=\Alph*)]
-\item No feedback when it becomes a new player's turn, or when players are engaged in combat
-\item Tactile feedback through vibrations in the smartphone
-\item Visual feedback through splash screens on the main screen
-\item Visual feedback through splash screens on the smartphones
+\item No stimuli
+\item Tactile stimulus through vibrations in the smartphone
+\item Visual stimulus through splash screens on the main screen
+\item Visual stimulus through splash screens on the smartphones
 \end{enumerate}
 
-The feedback is given to individual players when their turn starts and when a fight in which they participate begins.
+\subsection{No stimuli}\label{sub:no_feedback}
+Labelled \textit{A} in the experiment, it is used as a control version to analyse how people will distribute their attention when the system does not give any cues on where players are supposed to look. With this version, it is possible to investigate if certain attention cues work at all, by comparing the results of the version with said attention cues to the data from this version.
 
-\subsection{No feedback}\label{sub:no_feedback}
-Labelled \textit{A} in the experiment, it is used as a control vercion to analyse how people will distribute their attention when the system does not give any cues on where users are supposed to look. With this version, it is possible to investigate if certain attention cues work at all, by comparing the results of the version with said attention cues to the data from this version.
+\subsection{Tactile stimulus}\label{sub:tactile_feedback}
+Labelled \textit{B} in the experiment, this version of the game uses vibrations in the smartphones. This vibration is one continuous pulse lasting 200 milliseconds.
 
-\subsection{Tactile feedback}\label{sub:tactile_feedback}
-Labelled \textit{B} in the experiment, this version of the game uses vibrations in the smartphones. The phone of a player always vibrates at the start of the player's turn and of a fight that said player is part of. This vibration is one continuous pulse lasting for 200 milliseconds.
+\subsection{Visual stimulus on the main screen}\label{sub:visual_main}
+Labelled \textit{C} in the experiment, this version of the game displays splash screens on the main screen as an attention cue. A splash screen is shown every time a player begins their turn, which corresponds to the colour of that player's controller and pirate. An example of this can be seen in Figure \ref{fig:redturn}.
 
-\subsection{Visual feedback - The main screen}\label{sub:visual_main}
-Labelled \textit{C} in the experiment, this version of the game displays splash screens on the main screen as attention cues. A splash screen is shown every time a player begins their turn, which corresponds to the colour of that player's controller and pirate. An example of this can be seen in Figure \ref{fig:redturn}.
-
-A splash screen is also shown on the main screen every time a fight begins between any two players. This splash screen can be seen in Figure \ref{fig:fight_splash}.
+A splash screen is also shown on the main screen every time combat begins between any two players. This splash screen can be seen in Figure \ref{fig:fight_splash}.
 
 \begin{figure}[h!]
 	\centering
@@ -77,8 +67,10 @@ A splash screen is also shown on the main screen every time a fight begins betwe
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/getready.png}
-	\caption{Splash screen for a beginning fight}\label{fig:fight_splash}
+	\caption{Splash screen for combat}\label{fig:fight_splash}
 \end{figure}
 
-\subsection{Visual feedback - The smartphones}\label{sub:visual_smartphone}
-Labelled \textit{D} in the experiment, this version of the game uses the same splash screens as in version \textit{C}. However, the splash screens are used only for switching a player's turn. These splash screens are shown on the smartphones, and a splash screen is only shown to the player that is currently starting their turn. This means that in case it is the red player's turn, only said player will have a splash screen displayed on the smartphone. In order to test how well these feedback methods work the following chapter will describe how testing was designed and performed.
+\subsection{Visual stimulus on the smartphones}\label{sub:visual_smartphone}
+Labelled \textit{D} in the experiment, this version of the game uses the same splash screens as in version \textit{C}. However, the splash screens are used only for switching a player's turn. These splash screens are shown on the smartphones, and a splash screen is only shown to the player that is currently starting their turn. This means that in case it is the red player's turn, only said player will have a splash screen displayed on the smartphone.
+
+In order to test how well these methods work, the following chapter will describe how testing was designed and performed.

@@ -16,28 +16,7 @@
   {}
 \endgroup
 
-\entry{Lang2009}{misc}{}
-  \name{author}{2}{}{%
-    {{}%
-     {Annie~Lang}{A.~L.}%
-     {Byungho Park Mija~Shin}{B.~P. M.~S.}%
-     {}{}%
-     {Samuel D.~Bradley}{S.~D.~B.}}%
-    {{}%
-     {Chung}{C.}%
-     {Yongkuk}{Y.}%
-     {}{}%
-     {}{}}%
-  }
-  \strng{namehash}{ALSDBBPMSCY1}
-  \strng{fullhash}{ALSDBBPMSCY1}
-  \field{sortinit}{A}
-  \field{title}{Parsing the Resource Pie: Using STRTs to Measure Attention to
-  Mediated Messages}
-  \field{year}{2009}
-\endentry
-
-\entry{Charlton2010}{misc}{}
+\entry{Charlton2010}{article}{}
   \name{author}{2}{}{%
     {{}%
      {Charlton}{C.}%
@@ -58,7 +37,7 @@
   \field{year}{2010}
 \endentry
 
-\entry{Hamari2014}{misc}{}
+\entry{Hamari2014}{article}{}
   \name{author}{2}{}{%
     {{}%
      {Hamari}{H.}%
@@ -74,7 +53,7 @@
   \strng{namehash}{HJKJ1}
   \strng{fullhash}{HJKJ1}
   \field{sortinit}{H}
-  \field{title}{Mesuring flow in gamifcation: Dispositional Flow Scale-2}
+  \field{title}{Measuring flow in gamification: Dispositional Flow Scale-2}
   \field{year}{2014}
 \endentry
 
@@ -102,6 +81,49 @@
   \field{title}{The Roles of Vision and Eye Movements in the Control of
   Activities of Daily Living}
   \field{year}{1999}
+\endentry
+
+\entry{Lang2009}{article}{}
+  \name{author}{5}{}{%
+    {{}%
+     {Lang}{L.}%
+     {Annie}{A.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Bradley}{B.}%
+     {Samuel~D}{S.~D.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Park}{P.}%
+     {Byungho}{B.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Shin}{S.}%
+     {Mija}{M.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Chung}{C.}%
+     {Yongkuk}{Y.}%
+     {}{}%
+     {}{}}%
+  }
+  \list{publisher}{1}{%
+    {Taylor \& Francis}%
+  }
+  \strng{namehash}{LA+1}
+  \strng{fullhash}{LABSDPBSMCY1}
+  \field{sortinit}{L}
+  \field{number}{4}
+  \field{pages}{369\bibrangedash 394}
+  \field{title}{Parsing the resource pie: Using STRTs to measure attention to
+  mediated messages}
+  \field{volume}{8}
+  \field{journaltitle}{Media Psychology}
+  \field{year}{2009}
 \endentry
 
 \entry{lee2011efficient}{article}{}
@@ -167,23 +189,37 @@
 \endentry
 
 \entry{Mancas2016}{book}{}
-  \name{author}{2}{}{%
+  \name{author}{4}{}{%
     {{}%
-     {Matei~Mancas}{M.~M.}%
-     {Nicholas~Riche}{N.~R.}%
+     {Mancas}{M.}%
+     {Matei}{M.}%
      {}{}%
-     {Vincent P.~Ferrera}{V.~P.~F.}}%
+     {}{}}%
+    {{}%
+     {Ferrera}{F.}%
+     {Vincent~P}{V.~P.}%
+     {}{}%
+     {}{}}%
+    {{}%
+     {Riche}{R.}%
+     {Nicolas}{N.}%
+     {}{}%
+     {}{}}%
     {{}%
      {Taylor}{T.}%
-     {John~G.}{J.~G.}%
+     {John~G}{J.~G.}%
      {}{}%
      {}{}}%
   }
-  \strng{namehash}{MMVPFNRTJG1}
-  \strng{fullhash}{MMVPFNRTJG1}
+  \list{publisher}{1}{%
+    {Springer}%
+  }
+  \strng{namehash}{MM+1}
+  \strng{fullhash}{MMFVPRNTJG1}
   \field{sortinit}{M}
   \field{title}{From Human Attention to Computational Attention: A
-  multidiciplinary Approach}
+  Multidisciplinary Approach}
+  \field{volume}{10}
   \field{year}{2016}
 \endentry
 
