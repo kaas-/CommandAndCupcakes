@@ -1,12 +1,12 @@
-\chapter{Code Description}\label{ch:codeDescription}
-The developed game runs on a server which manages the game states and player turns, and handles different game events. During a game, four smartphones are connected to the server, functioning as controllers for the players. The server runs the Unity engine, while the controllers run a HTML website with JavaScript code.
+\chapter{Code description}\label{ch:codeDescription}
+The developed game runs on a server which manages the game states and player turns, and handles different game events. During a game, four smartphones are connected to the server, functioning as controllers for the players. The server runs the Unity engine, while the controllers run an HTML website with JavaScript code.
 
 \section{Layout and styling}\label{sec:codeLayoutStyling}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/controller_box_model.png}
-	\caption{Box Model of the controller's Planning Screen \label{fig:controllerBoxModel}}
+	\caption{Box model of the controller's planning screen \label{fig:controllerBoxModel}}
 \end{figure}
 
 \begin{figure}
@@ -25,28 +25,27 @@ The developed game runs on a server which manages the game states and player tur
 <div id="combat_result_won" class="view">YOU WON</div>
 <div id="combat_result_lost" class="view">YOU LOST</div>
 \end{lstlisting}
-\caption{Code snippet structuring the Combat Screen \label{HTMLex}}
+\caption{Code snippet structuring the combat screen \label{HTMLex}}
 \end{figure}
 
-The controller relies on the AirConsole "ViewManager" library, which is capable of displaying and hiding the contents of HTML \texttt{div}-tags, that have been assigned the "view" class. In this project, three different views have been defined:
+The controller relies on the AirConsole \textit{ViewManager} library, which is capable of displaying and hiding the contents of HTML \texttt{div}-tags, that have been assigned the \texttt{view} class. In this project, three different views have been defined:
 \begin{itemize}
-	\item Planning Screen
-	\item Waiting Screen
-	\item Combat Screen
+	\item Planning screen
+	\item Waiting screen
+	\item Combat screen
 \end{itemize}
 
 The controller switches between these different views depending on the game state.
 
-Figure \ref{fig:controllerBoxModel} illustrates a box model of how the Planning Screen is set up. Each \texttt{<div>} tag defines an area within the Planning Screen, which can be nested within other \texttt{<div>} tags. This makes a layered structure, where formatting of one tag affects everything inside it too.
+Figure \ref{fig:controllerBoxModel} illustrates a box model of how the planning screen is set up. Each \texttt{<div>} tag defines an area within the planning screen, which can be nested within other \texttt{<div>} tags. This makes a layered structure, where formatting of one tag affects everything inside it.
 
-The Planning Screen consist of four sub-areas: the map piece counter, the action slots and timer, the five action buttons and the execute turn button. These areas are then further defined into the individual counters and buttons.
+The planning screen consists of four sub-areas: the map piece counter, the action slots and timer, the five action buttons, and the execute turn button. These areas are then further defined into the individual counters and buttons.
 
-The Waiting Screen is structured identically to the Planning one, with a couple of exceptions. The first one is that there is an extra element that contains the overlay image, thus showing the player that this is the Waiting Screen. The second one is the absence of the timer in the Waiting Screen.
+The waiting screen is structured identically to the planning screen, with a couple of exceptions. The first one is that there is an extra element that contains the overlay image, thus showing the player that this is the waiting screen. The second one is the absence of the timer in the waiting screen.
 
-The Combat Screen consists of four areas, where three of them define areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screen contains the structure for the three buttons the player is supposed to press. The code for this part of the structure is shown in Figure \ref{HTMLex}.
-\todo{update Planning screen image, show the timer}
+The combat screen consists of four areas, where three of them define areas for splash screen when beginning, winning and/or losing combat. The area not used for splash screens contains the structure for the three buttons the player is supposed to press. The code for this part of the structure is shown in Figure \ref{HTMLex}.
 
-The webpage is styled using an external CSS stylesheet. This stylesheet was used to define different button areas their colours, the size of the different objects, the font and its size, load the images and define the hierarchy of the different objects. CSS can be used to style by tag, class, or ID. Tag styles are applied to all HTML tags of the specified type. Class styles are applied to the all objects that have been assigned to the specified class. Finally, ID styles are applied to the one object, that has been assigned the specified ID. Examples of ID and class styles used in this project can be seen in in Figure \ref{fig:IDex} and \ref{fig:Classex}. 
+The webpage is styled using an external CSS stylesheet. This stylesheet was used to define different button areas, the button colours, the size of the different objects, the font and its size, load the images, and define the hierarchy of the different objects. CSS can be used to style by tag, class, or ID. Tag styles are applied to all HTML tags of the specified type. Class styles are applied to the all objects which have been assigned to the specified class. Finally, ID styles are applied to the one object, which has been assigned the specified ID. Examples of ID and class styles used in this project can be seen in in Figure \ref{fig:IDex} and \ref{fig:Classex}. 
 
 \begin{figure}
 \begin{lstlisting}[language=CSS]
@@ -81,79 +80,78 @@ The webpage is styled using an external CSS stylesheet. This stylesheet was used
 \section{Programming}\label{sec:codeProgramming}
 
 \subsection{Controller}\label{sec:progController}
-As mentioned in Section \ref{sec:codeLayoutStyling} the controllers use the AirConsole ViewManager library to switch between different views. Each view corresponds one of three states:
+As mentioned in Section \ref{sec:codeLayoutStyling} the controllers use the AirConsole ViewManager library to switch between different views. Each view corresponds to one of three states:
 \begin{itemize}
 	\item Waiting for turn/combat event
 	\item Planning turn actions
 	\item Combat
 \end{itemize}
 
-By default, the controller starts in the waiting state. When it receives a message from the server, it will either switch to the planning or combat state, depending on the nature of the message. When the phone is in the planning state, a player has the opportunity to choose two actions within a period of 11 seconds, which are then sent to the server. If a player fails to do so within a specified time limit, only those actions that the player has currently selected are sent back to the server, even if just one or zero actions have been selected. All turn action messages are sent as an array of two strings.
+By default, the controller starts in the waiting state. When it receives a message from the server, it will either switch to the planning or combat state, depending on the message. When the phone is in the planning state, a player has the opportunity to choose two actions within a period of eleven seconds. The actions are then sent to the server. If a player fails to do so within the specified time limit, only those actions that the player has currently selected are sent back to the server, even if just one or zero actions have been selected. All turn action messages are sent as an array of two strings.
 
-If the controller goes to the combat state, a splash screen informing the player of the upcoming battle is shown. After a few seconds, a splash screen changes to the combat view with with buttons randomly positioned within the screen boundaries. These buttons are labelled '1' through '3' which is the order the player needs to press the buttons in. When a button is pressed it is made invisible after which the program checks whether the correct button was pressed. If all three buttons were pressed in the correct order, an "attack\_response\_success" message is sent to the server. If a button was pressed in the wrong order, an "attack\_response\_loss" message is sent. Depending on the combat outcome, a winning or losing splash screen is on the controller for a few seconds. 
+If the controller goes to the combat state, a splash screen informing the player of the upcoming combat is shown. After a few seconds, a splash screen changes to the combat view with buttons randomly positioned within the screen boundaries. These buttons are labelled '1' through '3' which is the order the player needs to press the buttons in. When a button is pressed, it becomes invisible. After this, the program checks whether the correct button was pressed. If all three buttons were pressed in the correct order, an "attack\_response\_success" message is sent to the server. If an incorrect button was pressed, an "attack\_response\_loss" message is sent. Depending on the combat outcome, a winning or losing splash screen is shown on the controller for a few seconds. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figures/StateMachineDiagramController.png}
-	\caption{State-machine diagram of the controller. \label{fig:stateMachine}}
+	\caption{State-machine diagram of the controller \label{fig:stateMachine}}
 \end{figure}
 
 Both the planning state and combat state return to the waiting state when they have concluded.  This is illustrated in Figure \ref{fig:stateMachine}.
 
-It is also worth mentioning that the controller code keeps the record of all the map pieces obtained during gameplay. The map pieces are stored in a string containing nine characters, since there is a total of nine map pieces on the "island". A '0' character indicates a missing map piece, while '1' indicates an obtained map piece. Therefore, at the start of the game, the string is equal to "000000000", which means that a player has zero map pieces. If a player obtains a map piece number five, for example, then the string changes to "000010000". This system is used to prevent players from obtaining the same map piece twice through combat. For instance, if a player has map pieces number two and six and wins a combat against a player who has only map piece number two, then the winner cannot increase the total number of map pieces to win the game. When a player has obtained nine different map pieces the controller sends a message to the server indicating the overall victory, after which the game is completed. 
+It is also worth mentioning that the controller code keeps the record of all the map pieces obtained during gameplay. The map pieces are stored in a string containing nine characters, since there is a total of nine map pieces in the game. A '0' character indicates a missing map piece, while '1' indicates an obtained map piece. Therefore, at the start of the game, the string is equal to "000000000", which means that a player has zero map pieces. If a player obtains map piece number five, for example, then the string changes to "000010000". This system is used to prevent players from obtaining the same map piece twice through combat. For instance, if a player has map pieces number two and six and wins a combat against a player who only has map piece number two, then the winner cannot increase the total number of map pieces to win the game. When a player has obtained nine different map pieces the controller sends a message to the server indicating the overall victory, after which the game is completed. 
 
 \subsection{Unity}
-The server side of the game was developed in Unity using AirConsole Unity plugin \cite{AirconsoleUnity}. The code was written in C\# and contains two classes: \texttt{GameManager} and \texttt{GridMove}.
+The server side of the game was developed in Unity using the AirConsole Unity plugin \cite{AirconsoleUnity}. The code was written in C\# and contains two classes: \texttt{GameManager} and \texttt{GridMove}.
 
-The \texttt{GameManager} is a god object that handles the game’s states, sets up the game arena, and facilitates communication between the game,  controllers, and the on-screen player characters. Furthermore, it manages player turns and randomises the player turn order after each round. The \texttt{GameManager} class extends the Unity engine’s \texttt{MonoBehavior} class which means that it is subscribed to certain callbacks from the Unity engine such as Start() which is used for initialization, and Update() which is called every frame. Furthermore, since it instantiates AirConsole, it receives callbacks for events such as devices connecting to and disconnecting from the game, and messages sent from devices to the game. 
+The \texttt{GameManager} is a god object that handles the game’s states, sets up the game arena, and facilitates communication between the game,  controllers, and the on-screen player characters. Furthermore, it manages player turns and randomises the player turn order after each round. The \texttt{GameManager} class extends the Unity engine’s \texttt{MonoBehavior} class which means that it is subscribed to certain callbacks from the Unity engine such as \texttt{Start()} which is used for initialisation, and \texttt{Update()} which is called every frame. Additionally, since it instantiates AirConsole, it receives callbacks for events such as devices connecting to and disconnecting from the game, and messages sent from devices to the game. 
 
 \subsubsection{Play area}\label{sec:playArea}
-Due to the grid based nature of the game, a method is used to convert Unity's x- and z- coordinates into tile coordinates, which are used for assigning map pieces to interactable objects, for determining what tile a player i interacting with, and for determining if a combat event needs to start. The main method used for this functionality is called \texttt{CalculateTile}. To make the system work, the \texttt{GameManager} script is attached to a square plane, that has the same side length as the play area. A variable is used to define the grid length - the play area of this game uses a 5x5 grid. The result is, that a position on the tile in the top-left most corner of the play area has a tile coordinate of (0, 0), and the opposite corner has a coordinate of (4, 4). By using this system it is then determined on which tile a object is located on.
+Due to the grid-based nature of the game, a method is used to convert Unity's x- and z-coordinates into tile coordinates, which are used for assigning map pieces to interactive objects, for determining what tile a player is interacting with, and for determining if a combat event needs to start. The main method used for this functionality is called \texttt{CalculateTile}. To make the system work, the \texttt{GameManager} script is attached to a square plane, that has the same side length as the play area. A variable is used to define the grid length - the play area of this game uses a 5x5 grid. The result is that a position on the tile in the top-left most corner of the play area has a tile coordinate of (0, 0), and the opposite corner has a coordinate of (4, 4). By using this system it is then determined on which tile an object is located.
 
-When the program starts executing, a two-dimensional array of booleans is defined to correspond to the ground tiles present in the play area. The size of this array thus matches the number of "ground" object placed in the scene. Then map pieces are randomly assigned to different interactable objects; whenever a map piece gets assigned, the \texttt{CalculateTile} method is used to set the correct boolean value in the 2D array to "true". The result is illustrated in Figure \ref{fig:playArea}. For the sake of clarity, the tiles that contain map pieces are marked yellow. During gameplay, however, players have no way of knowing whether a tile with an object contains a map piece or not before interacting with it.
+When the program starts executing, a two-dimensional array of booleans is defined to correspond to the ground tiles present in the play area. The size of this array thus matches the number of tiles placed in the scene. Then, map pieces are randomly assigned to different interactive objects; whenever a map piece gets assigned, the \texttt{CalculateTile} method is used to set the correct boolean value in the 2D array to "true". The result is illustrated in Figure \ref{fig:playArea}. During gameplay players have no way of knowing whether a tile with an object contains a map piece or not before interacting with it.
 
-The game currently requires that players obtain nine unique map pieces to win. Thus, the number of map pieces in the play area should match this number. If, for any reason, number of interactable objects in the scene is less than the number of map pieces to be assigned, then the program automatically changes the total number of map pieces to be six instead of nine.
+The game currently requires the players to obtain nine unique map pieces in order to win. Thus, the number of map pieces in the play area should match this number. If, for any reason, the number of interactive objects in the scene is less than the number of map pieces to be assigned, then the program automatically changes the total number of map pieces to match the number of interactive objects.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figures/mapFigure.jpg}
-	\caption{The play area. Tiles with map pieces have been highlighted for the sake of this figure.\label{fig:playArea}}
+	\caption{The play area. Tiles with map pieces have been highlighted in yellow for the sake of this figure\label{fig:playArea}}
 \end{figure}
 
 \subsubsection{Player turns}\label{sec:playerTurns}
-The turn of a player is structured according to Figure \ref{fig:seqDiagram1} which describes the communication between the GameManager, a given playerObject, and a given AirConsole Controller. Each turn starts with the \texttt{GameManager} sending a message to a controller that it is their turn, and ends when the \texttt{GameManager} calls the \texttt{NextTurn} method. 
+The turn of a player is structured according to Figure \ref{fig:seqDiagram1} which describes the communication between the \texttt{GameManager}, a given player object, and a given AirConsole controller. Each turn starts with the \texttt{GameManager} sending a message to a controller that it is its turn, and ends when the \texttt{GameManager} calls the \texttt{NextTurn} method. 
 
 \begin{figure}
 	\centering	
 	\includegraphics[width=1\textwidth]{figures/seq_diag_1.png}
-	\caption{The exchange of messages between the GameManager, playerObject, and a controller during a player turn.\label{fig:seqDiagram1}}
+	\caption{The exchange of messages between the GameManager, player object, and a controller during a player turn\label{fig:seqDiagram1}}
 \end{figure}
 
-Whenever a player executes their turn the \texttt{GameManager} receives a string of two actions. The \texttt{GameManager} then sends these actions to the corresponding player object which then handles these actions in the \texttt{GridMove} class. At the end of a turn, the \texttt{GameManager} checks if the current player ends their turn on the same tile as another player. If they do, a combat event is initiated between those two players.
+Whenever a player executes their turn the \texttt{GameManager} receives a string of two actions. The \texttt{GameManager} then sends these actions to the corresponding player object which then handles these actions in the \texttt{GridMove} class. At the end of a turn, the \texttt{GameManager} checks if the current player ends their turn on the same tile as another player. If they do, a combat event is initiated between these two players.
 
-The player may interact with an object as one of their turn actions. This procedure is follows Figure \ref{fig:seqDiag2}. \texttt{GameManager} receives a message from the player object that they are interacting with a tile. The tile coordinate of the player is then calculated using the \texttt{CalculateTile} method. The return value of this method is then passed to the \texttt{HasMapPiece} method which returns the boolean value of the corresponding position in the array described in Section \ref{sec:playArea}. If the object contains a map piece, the map piece number is sent to the controller.
+The player may interact with an object as one of their actions. This procedure follows Figure \ref{fig:seqDiag2}. The \texttt{GameManager} receives a message from the player object that it is interacting with a tile. The tile coordinate of the player is then calculated using the \texttt{CalculateTile} method. The return value of this method is then passed to the \texttt{HasMapPiece} method which returns the boolean value of the corresponding position in the array described in Section \ref{sec:playArea}. If the object contains a map piece, the map piece number is sent to the controller.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figures/seq_diag_2.png}
-	\caption{Interact. \label{fig:seqDiag2}}
+	\caption{Sequence diagram for an interact action \label{fig:seqDiag2}}
 \end{figure}
 
-The structure of a combat event is described in Figure \ref{fig:seqDiag3}. A message is sent to each controller involved in combat, both of which then switch to the combat screen which features a mini-game. Depending on the combat result, the \texttt{GameManager} will receive either a "attack\_response\_success" or a ""attack\_response\_failure" from one of the controller devices. Only the first player to respond is acknowledged by the \texttt{GameManager}. If the player responds with a 'success', the \texttt{GameManager} sends a 'loss' message to the other controller which responds with their entire map. This map is then sent to the first controller, which compares the map to their own and copies one map piece to their own map. If the player responds with 'failure' their message will be accompanied by their map. This map is sent to the other player which compares and copies as described previously. In the end of both outcomes, the winning player will send a response to the \texttt{GameManager} which will then advance to the next turn.
+The structure of a combat event is described in Figure \ref{fig:seqDiag3}. A message is sent to each controller involved in combat, both of which then switch to the combat screen which features the minigame. Depending on the combat result, the \texttt{GameManager} will receive either an "attack\_response\_success" or an "attack\_response\_failure" from one of the controller devices. Only the first controller to respond is acknowledged by the \texttt{GameManager}. If the controller responds with a 'success', the \texttt{GameManager} sends a 'loss' message to the other controller which responds with its entire map string. This map string is then sent to the first controller, which compares the map string to its own and copies one map piece to its own map string. If the controller responds with 'failure' its message will be accompanied by its map string. This map string is sent to the other controller which compares and copies as previously described. In the end of both outcomes, the winning controller will send a response to the \texttt{GameManager} which will then advance to the next turn.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{figures/seq_diag_3.png}
-	\caption{Combat event. \label{fig:seqDiag3}}
+	\caption{Sequence diagram for a combat event \label{fig:seqDiag3}}
 \end{figure}
 
 \subsection{GridMove}
-The \texttt{GridMove} class is attached to each individual player object. Like the \texttt{GameManager} class it extends the \texttt{MonoBehavior} class and is thus subscribed to the Update callback. The \texttt{GridMove} class accomplishes two things; it executes the movement actions of individual players in order, and it moves player characters according to the grid seen in Figure \ref{fig:playArea}. 
+The \texttt{GridMove} class is attached to each individual player object. Like the \texttt{GameManager} class it extends the \texttt{MonoBehavior} class and is thus subscribed to the Update callback. The \texttt{GridMove} class accomplishes two things: it executes the movement actions of individual players in order, and it moves player characters according to the grid seen in Figure \ref{fig:playArea}. 
 
-\texttt{GridMove} receives actions in the form of two strings in an array. These actions are then iterated through using an int variable called \texttt{actionIterator}, that is incremented at the end of each individual action, and reset when a new set of actions is received. The game flow ensures that all actions are executed before a new set of actions are received. 
+\texttt{GridMove} receives actions in the form of two strings in an array. These actions are then iterated through, using an integer variable called \texttt{actionIterator}, that is incremented at the end of each individual action, and reset when a new set of actions is received. The game flow ensures that all actions are executed before a new set of actions is received. 
 
-Whenever an action needs to be executed, a Switch statement determines the nature of the action. If it is a movement action, a coroutine is started which first determines the player object's current position, and then calculates the end position, that the player needs to stop at. This is determined based on a grid size variable to ensure, that player objects move according to the play area's grid. The character will then move a bit for each frame, until they have reached the end position, at which point the \texttt{actionIterator} will be incremented to execute the next action. When both actions have been executed, \texttt{GridMove} sends a message to the \texttt{GameManager} so that it can check for combat and advance to the next turn.
+Whenever an action needs to be executed, a \texttt{Switch} statement determines the nature of the action. If it is a movement action, a coroutine is started which first determines the player object's current position, and then calculates the end position where the player object needs to stop. This is determined based on the \texttt{gridSize} variable to ensure that player objects move according to the play area's grid. The character will then move until they have reached the end position, at which point the \texttt{actionIterator} will be incremented to execute the next action. When both actions have been executed, \texttt{GridMove} sends a message to the \texttt{GameManager} so it can check for combat and advance to the next turn.
 
 \section{Difference in builds}
-There were four different variations of the game made for the evaluation. While the first one had no changes, the other three had minor changes implemented. In order to provide the tactile feedback to the player, a function vibrate(milliseconds) is called when the controller leaves the waiting state. For the other version of the game where the splash screens appears upon the controller leaving the waiting state, a function show() for the view manager is executed. For visual feedback on the main screen, Unity cameras and canvases are used to display images on screen. The method ChangeCamera() is used to switch the camera between the arena and the UI message, and  SetSplashScreen(player, splash) is used to set the correct image for the screen. When it is another players turn or a player starts battle the SetSplashScreen(player, splash) is called to make sure we get the correct sprite on the canvas, after this we change the camera with ChangeCamera(). 
-
+There were four different versions of the game made for the evaluation. While the first one had no changes, the other three had minor changes implemented. In order to provide the tactile stimulus to the player, the function \texttt{vibrate(milliseconds)} is called when the controller leaves the waiting state. For the other version of the game in which the splash screens appears on the controller when it leaves the waiting state, the function \texttt{show()} for the view manager is executed. For visual stimulus on the main screen, Unity cameras and canvases are used to display images on the main screen. The method \texttt{ChangeCamera()} is used to switch the camera between the arena and the UI message, and  \texttt{SetSplashScreen(player, splash)} is used to set the correct image for the screen. When it is another players turn or a player starts battle the \texttt{SetSplashScreen(player, splash)} is called to make sure the correct sprite is on the canvas. After this the camera is changed with \texttt{ChangeCamera()}.
